@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import ListProjects from '../features/projects/ListProjects'
 
 const StyleProject = styled.section`
-  height: 85vh;
 `
 
 const StyleSection = styled.section`

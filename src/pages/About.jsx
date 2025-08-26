@@ -3,6 +3,7 @@ import Container from '../components/Container'
 import HeadingPageComponent from '../components/HeadingPageComponent'
 import CardInfo from '../features/about/CardInfo'
 import Facts from '../features/about/Facts'
+import ProgessSkills from '../features/about/ProgessSkills'
 
 const StyleAbout = styled.section`
   display: flex;
@@ -22,6 +23,13 @@ export default function About() {
             content='Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit'
           />
           <CardInfo />
+        </StyleSection>
+        <StyleSection>
+          <HeadingPageComponent
+            title='Skills'
+            content='Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit'
+          />
+          <ProgessSkills />
         </StyleSection>
         <StyleSection>
           <HeadingPageComponent

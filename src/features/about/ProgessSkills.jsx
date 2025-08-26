@@ -14,6 +14,9 @@ export default function ProgessSkills() {
             lineBorderRadius: 0,
           },
         },
+        token: {
+          colorText: 'var(--color-grey-800)',
+        },
       }}
     >
       <StyleProgress>

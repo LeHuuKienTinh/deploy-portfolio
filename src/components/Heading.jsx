@@ -35,6 +35,7 @@ const Heading = styled.h1`
     css`
       font-size: 2.4rem;
       font-weight: 500;
+      padding-bottom: 1rem;
     `}
 
      ${(props) =>
