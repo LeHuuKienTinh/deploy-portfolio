@@ -49,7 +49,7 @@ const StyleHeader = styled.div`
   box-shadow: var(--shadow-md);
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   z-index: 10;
   background-color: var(--color-platinum-1);
   color: var(--color-grey-600);
@@ -60,13 +60,14 @@ const StyleHeader = styled.div`
 
 const StyleToggle = styled.button`
   display: none;
+  background-color: var(--color-platinum-1);
   @media (max-width: 1200px) {
     display: inline-block;
   }
 `
 
 const StyleMenu = styled.div`
-  display: block;
+  /* display: block; */
   @media (max-width: 1200px) {
     display: none;
   }

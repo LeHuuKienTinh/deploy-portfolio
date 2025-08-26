@@ -1,5 +1,11 @@
 import { ConfigProvider, Modal } from 'antd'
 import { Menu } from 'antd'
+import styled from 'styled-components'
+
+const StyleMenu = styled(Menu)`
+  border-right: 'none';
+  text-align: center;
+`
 
 const ModalHeader = ({ modalOpen, setModalOpen, items, onClick, current }) => {
   return (
@@ -28,15 +34,11 @@ const ModalHeader = ({ modalOpen, setModalOpen, items, onClick, current }) => {
           footer={null}
           onCancel={() => setModalOpen(false)}
         >
-          <Menu
+          <StyleMenu
             onClick={onClick}
             mode='vertical'
             selectedKeys={[current]}
             items={items}
-            style={{
-              borderRight: 'none',
-              textAlign: 'center',
-            }}
           />
         </Modal>
       </ConfigProvider>

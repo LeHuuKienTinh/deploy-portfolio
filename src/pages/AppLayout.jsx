@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 
 const StyleMainWrapper = styled.main`
-  /* margin-top: 74px; */
+  background-color: var(--color-grey-0);
 `
 export default function AppLayout() {
   return (
