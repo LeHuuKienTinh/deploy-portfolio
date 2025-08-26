@@ -12,7 +12,7 @@ const GlobalStyles = createGlobalStyle`
 
 
   &, &.light-mode{
-  /* Grey */
+  /* Cyan */
   --color-grey-0: #fff;
   --color-grey-50: #f9fafb;
   --color-grey-100: #f3f4f6;
@@ -46,10 +46,31 @@ const GlobalStyles = createGlobalStyle`
   --shadow-md: 0px 0.6rem 2.4rem rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 2.4rem 3.2rem rgba(0, 0, 0, 0.12);
 
+  /* Cyan */
+  --color-platinum-1 : #E9E8E6;
+  --color-platinum-2 : #D9D7D4;
+  --color-platinum-3 : #C5C3BE;
+  --color-platinum-4 : #B2B0A9;
+  --color-platinum-5 : #9F9C93;
+  --color-platinum-6 : #8C887D;
+  --color-platinum-7 : #777369;
+  --color-platinum-8 : #615E56;
+  --color-platinum-9 : #4C4943;
+  --color-platinum-10 : #363430;
     /* For dark mode */
   --image-grayscale: 0;
   --image-opacity: 100%;
   }
+  --color-cyan-1 : #e6fffb;
+  --color-cyan-2 : #b5f5ec;
+  --color-cyan-3 : #87e8de;
+  --color-cyan-4 : #5cdbd3;
+  --color-cyan-5 : #36cfc9;
+  --color-cyan-6 : #13c2c2;
+  --color-cyan-7 : #08979c;
+  --color-cyan-8 : #00474f;
+  --color-cyan-9 : #00474f;
+  --color-cyan-10 : #002329;
 
   &.dark-mode{
     --color-grey-0: #18212f;
@@ -102,6 +123,17 @@ const GlobalStyles = createGlobalStyle`
   --border-radius-md: 7px;
   --border-radius-lg: 9px;
 
+   /* Cyan */
+  --color-grey-10 : #e6fffb;
+  --color-grey-9 : #b5f5ec;
+  --color-grey-8 : #87e8de;
+  --color-grey-7 : #5cdbd3;
+  --color-grey-6 : #36cfc9;
+  --color-grey-5 : #13c2c2;
+  --color-grey-4 : #08979c;
+  --color-grey-3 : #00474f;
+  --color-grey-2 : #00474f;
+  --color-grey-1 : #002329;
 
 }
 
@@ -121,7 +153,7 @@ html {
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", "Roboto", "Roboto Mono", "Rubik", sans-serif;
   color: var(--color-grey-700);
 
   transition: color 0.3s, background-color 0.3s;
@@ -191,7 +223,21 @@ img {
   /* For dark mode */
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
+//Tablet
+@media (max-width: 1200px){
 
+}
+
+@media (max-width: 768px){
+  font-size: 56.25%;
+
+}
+
+@media (max-width: 430px){
+html{
+  font-size: 50%;
+}
+}
 `
 
 export default GlobalStyles
