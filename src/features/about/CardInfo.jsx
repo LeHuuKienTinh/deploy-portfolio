@@ -16,6 +16,10 @@ export default function CardInfo() {
             bodyPadding: 12,
           },
         },
+        token: {
+          colorBgContainer: 'var(--color-grey-0)',
+          colorText: 'var(--color-grey-800)',
+        },
       }}
     >
       <Card variant='borderless'>
