@@ -13,6 +13,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { DarkModeProvider } from './context/DarkModeContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,6 +48,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path='login' element={<Login />} />
             </Routes>
           </Suspense>
         </BrowserRouter>

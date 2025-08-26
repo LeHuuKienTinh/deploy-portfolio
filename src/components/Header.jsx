@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-
+import { GiHamburgerMenu } from 'react-icons/gi'
+import { NavLink, useLocation } from 'react-router-dom'
+import styled from 'styled-components'
 import { ConfigProvider, Menu } from 'antd'
 import { Flex } from 'antd'
+
 import Logo from './Logo'
 import SocialGroup from './SocialGroup'
-import styled from 'styled-components'
-import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import ModalHeader from './ModalHeader'
+import MainNav from './MainNav'
 
 const items = [
   {
@@ -41,18 +42,21 @@ const items = [
     label: <NavLink to='blog'>Blog</NavLink>,
     key: '/blog',
   },
+  {
+    label: <NavLink to='login'>Change Info</NavLink>,
+    key: '/login',
+  },
 ]
 
 const StyleHeader = styled.div`
-  padding: 2rem 2.8rem;
-  /* border-bottom: 1px solid black; */
-  box-shadow: var(--shadow-md);
-  position: fixed;
-  top: 0;
   width: 100vw;
-  z-index: 10;
+  position: fixed;
   background-color: var(--color-platinum-1);
   color: var(--color-grey-600);
+  top: 0;
+  padding: 2rem 2.8rem;
+  box-shadow: var(--shadow-md);
+  z-index: 10;
   @media (max-width: 1200px) {
     justify-content: flex-end;
   }
@@ -60,80 +64,42 @@ const StyleHeader = styled.div`
 
 const StyleToggle = styled.button`
   display: none;
+  border: none;
   background-color: var(--color-platinum-1);
   @media (max-width: 1200px) {
     display: inline-block;
   }
 `
 
-const StyleMenu = styled.div`
-  /* display: block; */
-  @media (max-width: 1200px) {
-    display: none;
-  }
+const StyleModalHeader = styled(ModalHeader)`
+  padding: '0';
 `
 const Header = () => {
-  const location = useLocation()
-  console.log(location.pathname)
-
   const [modalOpen, setModalOpen] = useState(false)
+
+  const location = useLocation()
+
   const [current, setCurrent] = useState(location.pathname)
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1200)
+
   const onClick = (e) => {
     setCurrent(e.key)
   }
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 1200)
-    }
-    window.addEventListener('resize', handleResize)
-
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   return (
     <StyleHeader>
       <Flex justify='space-between' align='center'>
         <Logo />
-        {!isMobile && (
-          <ConfigProvider
-            theme={{
-              components: {
-                Menu: {
-                  itemHoverColor: 'var(--color-cyan-5)',
-                  horizontalItemHoverColor: 'var(--color-cyan-5)',
-                  horizontalItemSelectedColor: 'var(--color-cyan-5)',
-                  horizontalLineHeight: '35px',
-                  itemColor: 'var(--color-grey-600)',
-                  itemBg: 'var( --color-platinum-1 )',
-                },
-              },
-            }}
-          >
-            <StyleMenu>
-              <Menu
-                onClick={onClick}
-                mode='horizontal'
-                selectedKeys={[current]}
-                items={items}
-                style={{
-                  borderBottom: 'none',
-                }}
-              />
-            </StyleMenu>
-          </ConfigProvider>
-        )}
+        <MainNav current={current} onClick={onClick} items={items} />
         <SocialGroup />
         <StyleToggle onClick={() => setModalOpen(true)}>
           <GiHamburgerMenu size='22' />
         </StyleToggle>
-        <ModalHeader
+        <StyleModalHeader
           current={current}
           onClick={onClick}
           items={items}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
-          style={{ padding: '0' }}
         />
       </Flex>
     </StyleHeader>

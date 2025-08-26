@@ -9,6 +9,7 @@ const StyleAbout = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `
 const StyleSection = styled.section`
   padding: 6rem 0;
