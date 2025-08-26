@@ -6,7 +6,6 @@ const StyleMenu = styled(Menu)`
   border-right: 'none';
   text-align: center;
 `
-
 const ModalHeader = ({ modalOpen, setModalOpen, items, onClick, current }) => {
   return (
     <>

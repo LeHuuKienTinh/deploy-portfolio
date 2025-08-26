@@ -169,7 +169,7 @@ const GlobalStyles = createGlobalStyle`
   margin: 0;
 
   /* Creating animations for dark mode */
-  transition: background-color 0.3s, border 0.3s;
+  transition: background-color 0s, border 0s;
 }
 
 html {
@@ -180,7 +180,7 @@ body {
   font-family: "Inter", "Roboto", "Roboto Mono", "Rubik", sans-serif;
   color: var(--color-grey-700);
 
-  transition: color 0.3s, background-color 0.3s;
+  transition: color 0s, background-color 0s ;
   min-height: 100vh;
   line-height: 1.5;
   font-size: 1.6rem;
@@ -265,7 +265,6 @@ html{
 `
 
 export default GlobalStyles
-
 
 // Thuộc tính	Kích thước màn hình (min-width)
 // xs	< 576px (mobile nhỏ)
