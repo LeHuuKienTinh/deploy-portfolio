@@ -5,6 +5,8 @@ import styled from 'styled-components'
 const StyleHeadingPage  = styled.div`
   text-align: center;
   padding-bottom: 6rem;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 `
 
 export default function HeadingPageComponent({title, content}) {

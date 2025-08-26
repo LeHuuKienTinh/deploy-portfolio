@@ -25,11 +25,10 @@ const Heading = styled.h1`
         bottom: -5px;
         left: 50%;
         transform: translateX(-50%);
-        width: 60%; /* chỉnh độ dài */
+        width: 60%;
         border-bottom: 0.4rem solid var(--color-cyan-5);
       }
     `}
-    
     ${(props) =>
     props.as === 'h3' &&
     css`
@@ -51,9 +50,6 @@ const Heading = styled.h1`
       text-align: center;
       padding: 1rem 2rem;
     `}
-
-    
-    
   line-height: 1.4;
 `
 
