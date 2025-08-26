@@ -12,18 +12,22 @@ const Heading = styled.h1`
     props.as === 'h2' &&
     css`
       display: inline-flex;
-
-    //Can giua
       position: relative;
-      left: 50%;
-      transform: translateX(-50%);
-    //
       justify-content: center;
       font-size: 3.2rem;
       font-weight: 600;
       padding-bottom: 1.2rem;
       text-decoration: dashed;
-      border-bottom: 0.4rem solid var(--color-cyan-5);
+      margin-bottom: 2rem;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%; /* chỉnh độ dài */
+        border-bottom: 0.4rem solid var(--color-cyan-5);
+      }
     `}
     
     ${(props) =>
