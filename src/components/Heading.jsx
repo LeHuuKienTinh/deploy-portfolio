@@ -11,6 +11,14 @@ const Heading = styled.h1`
   ${(props) =>
     props.as === 'h2' &&
     css`
+      display: inline-flex;
+
+    //Can giua
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    //
+      justify-content: center;
       font-size: 3.2rem;
       font-weight: 600;
       padding-bottom: 1.2rem;
