@@ -30,9 +30,9 @@ function App() {
         <BrowserRouter>
           <Suspense fallback={'Loading...'}>
             <Routes>
-              <Route path='/' element={<AppLayout />}>
-                <Route index element={<Navigate replace to='/' />} />
-                <Route index element={<Home />} />
+              <Route element={<AppLayout />}>
+                <Route index element={<Navigate replace to='/home' />} />
+                <Route path='/home' element={<Home />} />
                 <Route path='projects' element={<Project />} />
                 <Route path='skills' element={<Skills />} />
                 <Route path='blog' element={<Blog />} />
