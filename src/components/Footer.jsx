@@ -16,10 +16,10 @@ export default function Footer() {
         <p>© Copyright Kelly All Rights Reserved</p>
         <SocialGroup />
         <p>
-          Designed by
-          <span style={{ color: 'var( --color-grey-6)' }}>BootstrapMade</span>
+          Designed by 
+          <span style={{ color: 'var( --color-grey-6)' }}> BootstrapMade </span>
           Distributed by
-          <span style={{ color: 'var( --color-grey-6)' }}>ThemeWagon</span>
+          <span style={{ color: 'var( --color-grey-6)' }}> ThemeWagon</span>
         </p>
       </Flex>
     </StyleFooter>
