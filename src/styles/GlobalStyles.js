@@ -73,7 +73,7 @@ const GlobalStyles = createGlobalStyle`
   --color-cyan-10 : #002329;
 
   &.dark-mode{
-    --color-grey-0: #18212f;
+--color-grey-0: #18212f;
 --color-grey-50: #111827;
 --color-grey-100: #1f2937;
 --color-grey-200: #374151;
@@ -99,6 +99,28 @@ const GlobalStyles = createGlobalStyle`
 --color-red-100: #fee2e2;
 --color-red-700: #b91c1c;
 --color-red-800: #991b1b;
+
+--color-platinum-10 : #E9E8E6;
+  --color-platinum-9 : #D9D7D4;
+  --color-platinum-8 : #C5C3BE;
+  --color-platinum-7 : #B2B0A9;
+  --color-platinum-6 : #9F9C93;
+  --color-platinum-5 : #8C887D;
+  --color-platinum-4 : #777369;
+  --color-platinum-3 : #615E56;
+  --color-platinum-2 : #4C4943;
+  --color-platinum-1 : #363430;
+
+   --color-cyan-10 : #e6fffb;
+  --color-cyan-9 : #b5f5ec;
+  --color-cyan-8 : #87e8de;
+  --color-cyan-7 : #5cdbd3;
+  --color-cyan-6 : #36cfc9;
+  --color-cyan-5 : #13c2c2;
+  --color-cyan-4 : #08979c;
+  --color-cyan-3 : #00474f;
+  --color-cyan-2 : #00474f;
+  --color-cyan-1 : #002329;
 
 --backdrop-color: rgba(0, 0, 0, 0.3);
 
@@ -134,6 +156,8 @@ const GlobalStyles = createGlobalStyle`
   --color-grey-3 : #00474f;
   --color-grey-2 : #00474f;
   --color-grey-1 : #002329;
+
+  
 
 }
 
