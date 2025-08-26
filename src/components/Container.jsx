@@ -1,8 +1,15 @@
 import styled from 'styled-components'
 
 const StyleContainer = styled.div`
-  margin: 130px 11rem 0 11rem;
+  padding: 130px 16px 60px 16px;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
 `
 export default function Container({ children }) {
-  return <StyleContainer>{children}</StyleContainer>
+  return (
+    <StyleContainer>
+      <div>{children}</div>
+    </StyleContainer>
+  )
 }
