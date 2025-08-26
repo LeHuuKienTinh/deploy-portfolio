@@ -18,13 +18,11 @@ export default function About() {
   return (
     <Container>
       <StyleAbout>
-        <StyleSection>
-          <HeadingPageComponent
-            title='About'
-            content='Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit'
-          />
-          <CardInfo />
-        </StyleSection>
+        <HeadingPageComponent
+          title='About'
+          content='Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit'
+        />
+        <CardInfo />
         <StyleSection>
           <HeadingPageComponent
             title='Skills'
