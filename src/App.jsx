@@ -2,11 +2,16 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
-
 import { DarkModeProvider } from './context/DarkModeContext'
+
 import GlobalStyles from './styles/GlobalStyles'
 import ProtectedRoute from './components/ProtectedRoute'
 import SpinnerFullPage from './components/SpinnerFullPage'
+
+import AboutDashboard from './pages/AboutDashboard'
+import ProjectsDashboard from './pages/ProjectsDashboard'
+import ContactDashboard from './pages/ContactDashboard'
+import BlogDashboard from './pages/BlogDashboard'
 
 const Home = lazy(() => import('./pages/Home'))
 const AppLayout = lazy(() => import('./pages/AppLayout'))
@@ -14,7 +19,7 @@ const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
-const Dashboard = lazy(() => import('./pages/Dashboard'))
+const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
 const Login = lazy(() => import('./pages/Login'))
 
 const queryClient = new QueryClient({
@@ -45,10 +50,15 @@ function App() {
                 path='dashboard'
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <DashboardLayout />
                   </ProtectedRoute>
                 }
-              />
+              >
+                <Route path='about' element={<AboutDashboard />} />
+                <Route path='projects' element={<ProjectsDashboard />} />
+                <Route path='contact' element={<ContactDashboard />} />
+                <Route path='blog' element={<BlogDashboard />} />
+              </Route>
               <Route path='login' element={<Login />} />
             </Routes>
           </Suspense>
