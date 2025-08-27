@@ -8,6 +8,7 @@ const StyleSocialGroup = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin-top: auto;
 `
 
 export default function SocialGroup() {

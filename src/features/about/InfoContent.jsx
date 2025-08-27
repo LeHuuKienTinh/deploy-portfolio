@@ -66,19 +66,19 @@ export default function InfoContent() {
           <ul>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Birthday: </b> &nbsp; <span>1 May 1995</span>
+              <b>Age: </b> &nbsp; <span>30</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Website: </b> &nbsp; <span>www.example.com</span>
+              <b>Degree: </b> &nbsp; <span>Master</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Phone: </b> &nbsp; <span>+123 456 7890</span>
+              <b>Email: </b> &nbsp; <span>admi@gmail.com</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>City: </b> &nbsp; <span>New York, USA</span>
+              <b>Freelance: </b> &nbsp; <span>Available</span>
             </StyleList>
           </ul>
         </Col>

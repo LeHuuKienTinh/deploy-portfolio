@@ -12,8 +12,12 @@ import { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { DarkModeProvider } from './context/DarkModeContext'
 import ProtectedRoute from './components/ProtectedRoute'
-import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
+import DashboardLayout from './pages/DashboardLayout'
+import AboutDashboard from './pages/AboutDashboard'
+import ProjectsDashboard from './pages/ProjectsDashboard'
+import ContactDashboard from './pages/ContactDashboard'
+import BlogDashboard from './pages/BlogDashboard'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,10 +48,15 @@ function App() {
                 path='dashboard'
                 element={
                   <ProtectedRoute>
-                    <Dashboard />
+                    <DashboardLayout />
                   </ProtectedRoute>
                 }
-              />
+              >
+                <Route path='about' element={<AboutDashboard />} />
+                <Route path='projects' element={<ProjectsDashboard />} />
+                <Route path='contact' element={<ContactDashboard />} />
+                <Route path='blog' element={<BlogDashboard />} />
+              </Route>
               <Route path='login' element={<Login />} />
             </Routes>
           </Suspense>
