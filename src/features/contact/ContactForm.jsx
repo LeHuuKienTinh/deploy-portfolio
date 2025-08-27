@@ -11,7 +11,7 @@ const StyleForm = styled.div`
 `
 const StyleCard = styled(Card)`
   width: 100%;
-  @media (max-width: 992px) {
+  @media (max-width: 991px) {
     margin-top: 20px;
   }
 `
