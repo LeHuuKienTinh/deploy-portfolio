@@ -1,14 +1,20 @@
 import styled from 'styled-components'
-import HeroImg from '../assets/hero-bg.jpg'
+import HeroImgLight from '../assets/hero-bg-light.jpg'
+import HeroImgDark from '../assets/hero-bg-dark.png'
 import Heading from '../components/Heading'
 import StyleButton from '../components/Button'
+import { useNavigate } from 'react-router-dom'
 
 const StyleHome = styled.section`
   position: relative;
-  background-image: url(${HeroImg});
+  background-image: url(${HeroImgLight});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  .dark-mode & {
+    background-image: url(${HeroImgDark});
+  }
   width: 100%;
   height: 100vh;
   @media (max-width: 768px) {
@@ -30,6 +36,8 @@ const StyleHeadingHome = styled.div`
 `
 
 export default function Home() {
+  const navigate = useNavigate()
+
   return (
     <StyleHome>
       <StyleCenterContent>
@@ -40,7 +48,7 @@ export default function Home() {
           </Heading>
         </StyleHeadingHome>
 
-        <StyleButton>About me</StyleButton>
+        <StyleButton onClick={() => navigate('/about')}>About me</StyleButton>
       </StyleCenterContent>
     </StyleHome>
   )

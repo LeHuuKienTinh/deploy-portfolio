@@ -1,8 +1,10 @@
 import ErrorComponent from './ErrorComponent'
+import Spinner from './Spinner'
+import SpinnerFullPage from './SpinnerFullPage'
 
 function LoadingComponent({ children, isLoading, error = null }) {
   if (isLoading) {
-    return <></>
+    return <SpinnerFullPage />
   }
 
   if (error) {

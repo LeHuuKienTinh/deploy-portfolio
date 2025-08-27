@@ -1,23 +1,26 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
-import AppLayout from './pages/AppLayout'
-import Project from './pages/Project'
-import Blog from './pages/Blog'
-import About from './pages/About'
-import Skills from './pages/Skills'
-import Contact from './pages/Contact'
-import GlobalStyles from './styles/GlobalStyles'
-import { Toaster } from 'react-hot-toast'
-import { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from 'react-hot-toast'
 import { DarkModeProvider } from './context/DarkModeContext'
+
+import GlobalStyles from './styles/GlobalStyles'
 import ProtectedRoute from './components/ProtectedRoute'
-import Login from './pages/Login'
-import DashboardLayout from './pages/DashboardLayout'
+import SpinnerFullPage from './components/SpinnerFullPage'
+
 import AboutDashboard from './pages/AboutDashboard'
 import ProjectsDashboard from './pages/ProjectsDashboard'
 import ContactDashboard from './pages/ContactDashboard'
 import BlogDashboard from './pages/BlogDashboard'
+
+const Home = lazy(() => import('./pages/Home'))
+const AppLayout = lazy(() => import('./pages/AppLayout'))
+const Project = lazy(() => import('./pages/Project'))
+const Blog = lazy(() => import('./pages/Blog'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
+const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
+const Login = lazy(() => import('./pages/Login'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,13 +36,12 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <GlobalStyles />
         <BrowserRouter>
-          <Suspense fallback={'Loading...'}>
+          <Suspense fallback={<SpinnerFullPage />}>
             <Routes>
               <Route element={<AppLayout />}>
                 <Route index element={<Navigate replace to='/home' />} />
                 <Route path='/home' element={<Home />} />
                 <Route path='projects' element={<Project />} />
-                <Route path='skills' element={<Skills />} />
                 <Route path='blog' element={<Blog />} />
                 <Route path='contact' element={<Contact />} />
                 <Route path='about' element={<About />} />
