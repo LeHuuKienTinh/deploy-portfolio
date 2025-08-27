@@ -5,7 +5,7 @@ import HeadingPageComponent from '../components/HeadingPageComponent'
 import ProgessSkills from '../features/about/ProgessSkills'
 
 const StyleSkills = styled.section`
-height: 85vh;
+  height: 85vh;
 `
 
 const StyleSection = styled.section`

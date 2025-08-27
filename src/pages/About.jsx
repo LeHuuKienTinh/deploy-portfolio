@@ -12,6 +12,7 @@ const StyleAbout = styled.section`
   align-items: center;
 `
 const StyleSection = styled.section`
+  width: 100%;
   padding: 6rem 0;
 `
 export default function About() {
