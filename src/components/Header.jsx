@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { NavLink, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { ConfigProvider, Menu } from 'antd'
 import { Flex } from 'antd'
 
 import Logo from './Logo'
@@ -12,14 +11,7 @@ import MainNav from './MainNav'
 
 const items = [
   {
-    label: (
-      <NavLink
-        to='/home'
-        className={({ isActive }) => (isActive ? 'ant-menu-item-active' : '')}
-      >
-        Home
-      </NavLink>
-    ),
+    label: <NavLink to='/home'>Home</NavLink>,
     key: '/home',
   },
   {
@@ -29,10 +21,6 @@ const items = [
   {
     label: <NavLink to='projects'>Projects</NavLink>,
     key: '/projects',
-  },
-  {
-    label: <NavLink to='skills'>Skills</NavLink>,
-    key: '/skills',
   },
   {
     label: <NavLink to='contact'>Contact</NavLink>,
@@ -66,6 +54,9 @@ const StyleToggle = styled.button`
   display: none;
   border: none;
   background-color: var(--color-platinum-1);
+  &:focus {
+    outline: none;
+  }
   @media (max-width: 1200px) {
     display: inline-block;
   }
@@ -79,7 +70,11 @@ const Header = () => {
 
   const location = useLocation()
 
-  const [current, setCurrent] = useState(location.pathname)
+  const [current, setCurrent] = useState('/home')
+
+  useEffect(() => {
+    setCurrent(location.pathname)
+  }, [location.pathname])
 
   const onClick = (e) => {
     setCurrent(e.key)
