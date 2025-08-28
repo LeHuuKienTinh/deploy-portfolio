@@ -3,6 +3,7 @@ import { ConfigProvider, Empty, Table, Input, Space } from 'antd'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { selectAllContacts } from '../../../slice/contactsSlice'
+import useContacts from '../../../hooks/useContacts'
 
 const { Search } = Input
 
@@ -26,34 +27,7 @@ const StyledSpace = styled(Space)`
   width: 100%;
 `
 const ContactTable = () => {
-  const contacts = useSelector(selectAllContacts)
-  const data = contacts.map((contact, index) => {
-    return {
-      key: index,
-      name: contact.name,
-      email: contact.email,
-      subject: contact.subject,
-      message: contact.message,
-    }
-  })
-  console.log('data', data)
-
-  const [searchText, setSearchText] = useState('')
-  const [filteredData, setFilteredData] = useState(data)
-
-  const handleSearch = (value) => {
-    const lowerValue = value.toLowerCase()
-    const filtered = data.filter(
-      (item) =>
-        item.name.toLowerCase().includes(lowerValue) ||
-        item.email.toLowerCase().includes(lowerValue) ||
-        item.subject.toLowerCase().includes(lowerValue) ||
-        item.message.toLowerCase().includes(lowerValue)
-    )
-    setFilteredData(filtered)
-    setSearchText(value)
-  }
-
+  const { searchText, filteredData, handleSearch } = useContacts()
   return (
     <StyledContactTable>
       <ConfigProvider
