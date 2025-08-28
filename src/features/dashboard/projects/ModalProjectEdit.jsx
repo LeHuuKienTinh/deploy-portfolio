@@ -6,10 +6,10 @@ const StyledModal = styled(Modal)`
   top: 40px;
 `
 
-export default function ModalProjectEdit({ onCancel, open, onOpen, project }) {
+export default function ModalProjectEdit({ project, isOpenModal, onCancel }) {
   return (
-    <StyledModal onCancel={onCancel} open={open} footer={null}>
-      <ProjectItemEdit onOpen={onOpen} project={project} />
+    <StyledModal onCancel={onCancel} open={isOpenModal} footer={null}>
+      <ProjectItemEdit onCancel={onCancel} project={project} />
     </StyledModal>
   )
 }

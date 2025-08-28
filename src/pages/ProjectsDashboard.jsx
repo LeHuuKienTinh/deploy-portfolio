@@ -1,11 +1,9 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { selectAllProjects } from '../features/projects/ProjectsSlice'
 import styled from 'styled-components'
 
 import Heading from '../components/Heading'
 import ListProjects from '../features/projects/ListProjects'
 import ModalProjectEdit from '../features/dashboard/projects/ModalProjectEdit'
+import useProjects from '../features/projects/useProjects'
 
 const StyledButton = styled.button`
   position: fixed;
@@ -43,24 +41,17 @@ const StyledButton = styled.button`
 `
 
 export default function ProjectsDashboard() {
-  const projects = useSelector(selectAllProjects)
-  const [editId, setEditId] = useState(null)
-  const [activeEdit, setActiveEdit] = useState(false)
-  const [open, setOpen] = useState(false)
-
-  const handleCancel = () => {
-    setOpen(false)
-  }
-
-  function HandleOnActiveEdit() {
-    setActiveEdit((activeEdit) => !activeEdit)
-    setEditId(null)
-  }
+  const {
+    activeEdit,
+    HandleOnActiveEdit,
+    isOpenModal: isOpenModalCreate,
+    setIsOpenModal: setIsOpenModalCreate,
+  } = useProjects()
 
   return (
     <>
       <Heading as='h2'>Projects {!activeEdit ? 'Preview' : 'Editting'}</Heading>
-      <StyledButton $right={'10px'} onClick={() => setOpen(true)}>
+      <StyledButton $right={'10px'} onClick={() => setIsOpenModalCreate(true)}>
         Create Project
       </StyledButton>
       <StyledButton
@@ -70,13 +61,11 @@ export default function ProjectsDashboard() {
       >
         {!activeEdit ? 'Edit Project' : 'Save'}
       </StyledButton>
-      <ListProjects
-        projects={projects}
-        onEditId={setEditId}
-        editId={editId}
-        activeEdit={activeEdit}
+      <ListProjects activeEdit={activeEdit} />
+      <ModalProjectEdit
+        isOpenModal={isOpenModalCreate}
+        onCancel={() => setIsOpenModalCreate(false)}
       />
-      <ModalProjectEdit onOpen={setOpen} onCancel={handleCancel} open={open} />
     </>
   )
 }

@@ -1,15 +1,11 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { DarkModeProvider } from './context/DarkModeContext'
-import { useDispatch, useSelector } from 'react-redux'
 
 import GlobalStyles from './styles/GlobalStyles'
 import ProtectedRoute from './components/ProtectedRoute'
 import SpinnerFullPage from './components/SpinnerFullPage'
-
-import { fetchSkills } from './features/Skills/skillSlice'
-import { useUser } from './features/authentication/useUser'
 
 const Home = lazy(() => import('./pages/Home'))
 const AppLayout = lazy(() => import('./pages/AppLayout'))
@@ -27,14 +23,6 @@ const ContactDashboard = lazy(() => import('./pages/ContactDashboard'))
 const BlogDashboard = lazy(() => import('./pages/BlogDashboard'))
 
 function App() {
-  const { user } = useUser()
-  const dispatch = useDispatch()
-  const items = useSelector((state) => state.skills.items)
-  useEffect(() => {
-    if (user?.id) {
-      dispatch(fetchSkills(user.id))
-    }
-  }, [dispatch, user?.id])
   return (
     <DarkModeProvider>
       <GlobalStyles />
