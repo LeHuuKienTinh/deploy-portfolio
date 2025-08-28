@@ -2,8 +2,8 @@ import { useUser } from '../../authentication/useUser'
 import { useDispatch } from 'react-redux'
 import useAbout from '../../../hooks/useAbout'
 import { useSkill } from '../../../hooks/useSkill'
-import { SkillTable } from './SkillTable'
-import { SkillForm } from './SkillForm'
+import SkillTable from './SkillTable'
+import SkillForm from './SkillForm'
 import StyleButton from '../../../components/Button'
 
 export default function UpdateSkillsModal() {
