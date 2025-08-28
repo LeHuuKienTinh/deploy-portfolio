@@ -4,6 +4,7 @@ import { Button, Card, Col, ConfigProvider, Row } from 'antd'
 import InfoContent from '../features/about/InfoContent'
 import styled from 'styled-components'
 import Avata2 from '../assets/avt-2.jpg'
+import { signup } from '../services/apiAuth'
 
 const StyleAvata = styled.img`
   width: 40rem;
@@ -42,7 +43,13 @@ export default function AboutDashboard() {
             </Col>
           </Row>
         </Card>
-        <Button>Update</Button>
+        <Button
+          onClick={() => {
+            signup()
+          }}
+        >
+          Update
+        </Button>
       </ConfigProvider>
     </>
   )

@@ -1,4 +1,10 @@
-import { differenceInDays, formatDistance, parseISO } from 'date-fns'
+import {
+  differenceInDays,
+  format,
+  formatDistance,
+  parse,
+  parseISO,
+} from 'date-fns'
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) =>
@@ -27,3 +33,16 @@ export const formatCurrency = (value) =>
   new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(
     value
   )
+
+export const convertRangeToISO = (rangeStr) => {
+  return rangeStr.split(' - ').map((dateStr) => {
+    const parsed = parse(dateStr, 'MMM yyyy', new Date())
+    return format(parsed, 'yyyy-MM-dd')
+  })
+}
+
+export const convertArrayToRange = (arrayDateGap) => {
+  return arrayDateGap
+    .map((date) => format(new Date(date), 'MMM yyyy'))
+    .join(' - ')
+}

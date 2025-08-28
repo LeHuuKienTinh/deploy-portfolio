@@ -7,11 +7,8 @@ import { DarkModeProvider } from './context/DarkModeContext'
 import GlobalStyles from './styles/GlobalStyles'
 import ProtectedRoute from './components/ProtectedRoute'
 import SpinnerFullPage from './components/SpinnerFullPage'
-
-import AboutDashboard from './pages/AboutDashboard'
-import ProjectsDashboard from './pages/ProjectsDashboard'
-import ContactDashboard from './pages/ContactDashboard'
-import BlogDashboard from './pages/BlogDashboard'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 const Home = lazy(() => import('./pages/Home'))
 const AppLayout = lazy(() => import('./pages/AppLayout'))
@@ -19,8 +16,14 @@ const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
-const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
+
 const Login = lazy(() => import('./pages/Login'))
+
+const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
+const AboutDashboard = lazy(() => import('./pages/AboutDashboard'))
+const ProjectsDashboard = lazy(() => import('./pages/ProjectsDashboard'))
+const ContactDashboard = lazy(() => import('./pages/ContactDashboard'))
+const BlogDashboard = lazy(() => import('./pages/BlogDashboard'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,34 +38,37 @@ function App() {
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
         <GlobalStyles />
-        <BrowserRouter>
-          <Suspense fallback={<SpinnerFullPage />}>
-            <Routes>
-              <Route element={<AppLayout />}>
-                <Route index element={<Navigate replace to='/home' />} />
-                <Route path='/home' element={<Home />} />
-                <Route path='projects' element={<Project />} />
-                <Route path='blog' element={<Blog />} />
-                <Route path='contact' element={<Contact />} />
-                <Route path='about' element={<About />} />
-              </Route>
-              <Route
-                path='dashboard'
-                element={
-                  <ProtectedRoute>
-                    <DashboardLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route path='about' element={<AboutDashboard />} />
-                <Route path='projects' element={<ProjectsDashboard />} />
-                <Route path='contact' element={<ContactDashboard />} />
-                <Route path='blog' element={<BlogDashboard />} />
-              </Route>
-              <Route path='login' element={<Login />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Suspense fallback={<SpinnerFullPage />}>
+              <Routes>
+                <Route element={<AppLayout />}>
+                  <Route index element={<Navigate replace to='/home' />} />
+                  <Route path='/home' element={<Home />} />
+                  <Route path='projects' element={<Project />} />
+                  <Route path='blog' element={<Blog />} />
+                  <Route path='contact' element={<Contact />} />
+                  <Route path='about' element={<About />} />
+                </Route>
+                <Route
+                  path='dashboard'
+                  element={
+                    <ProtectedRoute>
+                      <DashboardLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<Navigate replace to='about' />} />
+                  <Route path='about' element={<AboutDashboard />} />
+                  <Route path='projects' element={<ProjectsDashboard />} />
+                  <Route path='contact' element={<ContactDashboard />} />
+                  <Route path='blog' element={<BlogDashboard />} />
+                </Route>
+                <Route path='login' element={<Login />} />
+              </Routes>
+            </Suspense>
+          </BrowserRouter>
+        </Provider>
         <Toaster
           position='top-center'
           gutter={12}

@@ -1,6 +1,6 @@
 import { Card, Col, ConfigProvider, Flex, Row } from 'antd'
 import styled from 'styled-components'
-import StyleButton from '../../components/Button'
+import Button from '../../components/Button'
 import { Formik } from 'formik'
 import { Form, Input } from 'formik-antd'
 
@@ -85,7 +85,7 @@ export default function ContactForm() {
                 </Col>
                 <Col md={24} xs={24}>
                   <Flex align='center' justify='center'>
-                    <StyleButton type='submit'>Send Message</StyleButton>
+                    <Button type='submit'>Send Message</Button>
                   </Flex>
                 </Col>
               </Row>

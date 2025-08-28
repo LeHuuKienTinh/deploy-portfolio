@@ -1,7 +1,16 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
+
+import {
+  fetchProjects,
+  selectStatusProjects,
+} from '../features/projects/ProjectsSlice'
+
 import Sidebar from '../components/Sidebar'
-import styled from 'styled-components'
 import SocialGroup from '../components/SocialGroup'
+import styled from 'styled-components'
+import LoadingFullPage from '../components/LoadingFullPage'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -33,7 +42,7 @@ const Main = styled.main`
   }
 `
 const Container = styled.div`
-width: 100%;
+  width: 100%;
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
@@ -43,18 +52,27 @@ width: 100%;
 const SocialWrapper = styled.div`
   justify-self: end;
 `
-export default function AppLayout() {
+export default function DashboardLayout() {
+  const dispatch = useDispatch()
+  const status = useSelector(selectStatusProjects)
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch])
+
   return (
-    <StyledAppLayout>
-      <Sidebar />
-      <Main>
-        <SocialWrapper>
-          <SocialGroup />
-        </SocialWrapper>
-        <Container>
-          <Outlet />
-        </Container>
-      </Main>
-    </StyledAppLayout>
+    <LoadingFullPage isLoading={status === 'idle'}>
+      <StyledAppLayout>
+        <Sidebar />
+        <Main>
+          <SocialWrapper>
+            <SocialGroup />
+          </SocialWrapper>
+          <Container>
+            <Outlet />
+          </Container>
+        </Main>
+      </StyledAppLayout>
+    </LoadingFullPage>
   )
 }
