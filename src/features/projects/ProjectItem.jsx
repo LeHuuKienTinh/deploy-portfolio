@@ -1,7 +1,7 @@
 import ProjectItemView from './ProjectItemView'
 import { ConfigProvider } from 'antd'
 import ModalProjectEdit from '../dashboard/projects/ModalProjectEdit'
-import useProjects from './useProjects'
+import useProjects from '../../hooks/useProjects'
 
 export default function ProjectItem({ project = {}, activeEdit }) {
   const {

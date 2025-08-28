@@ -4,7 +4,7 @@ import {
   deleteSkillApi,
   getSkillsApi,
   updateSkillApi,
-} from '../../services/apiSkills'
+} from '../services/apiSkills'
 
 const initialState = {
   items: [],

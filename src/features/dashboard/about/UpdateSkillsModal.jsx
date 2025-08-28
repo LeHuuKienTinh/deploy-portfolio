@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useUser } from '../authentication/useUser'
+import { useUser } from '../../authentication/useUser'
 import { useDispatch } from 'react-redux'
-import useSkill from '../Skills/useSkill'
-import { addSkill, deleteSkill, updateSkill } from '../Skills/skillSlice'
+import useAbout from '../../../hooks/useAbout'
+import { addSkill, deleteSkill, updateSkill } from '../../../slice/skillSlice'
 import {
   Table,
   Button,
@@ -17,7 +17,7 @@ import { Formik } from 'formik'
 import { Input as AntdInput } from 'antd'
 import * as Yup from 'yup'
 
-import StyleButton from '../../components/Button'
+import StyleButton from '../../../components/Button'
 import styled from 'styled-components'
 
 //VALIDATE
@@ -36,11 +36,11 @@ const StyleFlexButton = styled.div`
 `
 
 export default function UpdateSkillsModal() {
-  const [initValues, setInitValues] = useState({ name: '', level: '' })
   const { user } = useUser()
-  const skills = useSkill()
   const dispatch = useDispatch()
+  const { skills } = useAbout()
 
+  const [initValues, setInitValues] = useState({ name: '', level: '' })
   const [editingKey, setEditingKey] = useState(null)
   const [editingRow, setEditingRow] = useState({})
   const [isModalOpen, setIsModalOpen] = useState(false)

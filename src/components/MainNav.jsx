@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 const StyleMenu = styled(Menu)`
   border-bottom: none;
-  font-weight: 500;
   @media (max-width: 1200px) {
     display: none;
   }

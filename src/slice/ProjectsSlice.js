@@ -4,7 +4,7 @@ import {
   createProject as createProjectApi,
   updateProject as updateProjectApi,
   deleteProject as deleteProjectApi,
-} from '../../services/apiProjects'
+} from '../services/apiProjects'
 import toast from 'react-hot-toast'
 
 const initialState = {

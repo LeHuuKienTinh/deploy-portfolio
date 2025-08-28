@@ -1,19 +1,15 @@
 import { useState } from 'react'
-import { useUser } from '../features/authentication/useUser'
-
 import { Button, Card, Col, ConfigProvider, Modal, Row } from 'antd'
-
 import styled from 'styled-components'
-import InfoContent from '../features/about/InfoContent'
-import UpdateInfoModal from '../features/about/UpdateInfoModal'
-import UpdateSkills from '../features/about/UpdateSkills'
-import Heading from '../components/Heading'
-import UpdateFacts from '../features/about/UpdateFacts'
 import { useSelector } from 'react-redux'
-import {
-  selectAllDataUser,
-  selectStatusDataUser,
-} from '../features/userInfoSlice'
+
+import { selectAllDataUser } from '../../slice/userInfoSlice'
+
+import UpdateInfoModal from '../../features/dashboard/about/UpdateInfoModal'
+import UpdateSkills from '../../features/dashboard/about/UpdateSkills'
+import UpdateFacts from '../../features/dashboard/about/UpdateFacts'
+import Heading from '../../components/Heading'
+import InfoContent from '../../features/about/InfoContent'
 
 const StyleAboutDashboard = styled.div`
   & h2 {
@@ -30,14 +26,10 @@ const StyleButton = styled.div`
 `
 export default function AboutDashboard() {
   const data = useSelector(selectAllDataUser)
-  const status = useSelector(selectStatusDataUser)
+
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  if (status === 'pending') {
-    return <div>Loading...</div>
-  }
-
-  const { avatar } = data[0]
+  const { avatar } = data
 
   const showModal = () => {
     setIsModalOpen(true)
@@ -102,7 +94,7 @@ export default function AboutDashboard() {
           width={900}
           footer={null}
         >
-          <UpdateInfoModal handleCancel={handleCancel} data={data[0]} />
+          <UpdateInfoModal handleCancel={handleCancel} data={data} />
         </Modal>
         <UpdateSkills />
         <UpdateFacts />

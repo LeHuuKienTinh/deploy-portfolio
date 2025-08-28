@@ -1,13 +1,11 @@
 import { Col, Row } from 'antd'
 import Heading from '../../components/Heading'
-import useSkill from '../Skills/useSkill'
-import useFacts from '../Facts/useFacts'
-import useProjects from '../projects/useProjects'
+import useProjects from '../../hooks/useProjects'
+import useAbout from '../../hooks/useAbout'
 
 export default function Facts() {
-  const skills = useSkill()
-  const facts = useFacts()
-  const projects = useProjects()
+  const { skills, facts } = useAbout()
+  const { projects } = useProjects()
 
   return (
     <Row justify='center' align='middle' gutter={[12, 42]}>

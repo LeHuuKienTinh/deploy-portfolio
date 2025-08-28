@@ -1,29 +1,28 @@
 import { useState } from 'react'
-import HeadingPageComponent from '../../components/HeadingPageComponent'
+import { useUser } from '../../authentication/useUser'
+import useAbout from '../../../hooks/useAbout'
 import { Button, Col, Popconfirm, Row } from 'antd'
-import Heading from '../../components/Heading'
 import styled from 'styled-components'
-import useSkill from '../Skills/useSkill'
-import { useDispatch, useSelector } from 'react-redux'
-import { updateFacts } from '../Facts/factSlice'
-import useFacts from '../Facts/useFacts'
-import { useUser } from '../authentication/useUser'
+import { useDispatch } from 'react-redux'
+
+import { updateFacts } from '../../../slice/factSlice'
+
+import Heading from '../../../components/Heading'
+import HeadingPageComponent from '../../../components/HeadingPageComponent'
 
 const StyleColCenter = styled(Col)`
   text-align: center;
 `
-
 const StyleButtonPlusMinus = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
 `
-
 export default function UpdateFacts() {
   const { user } = useUser()
-  const skills = useSkill()
-  const facts = useFacts()
+  const { skills, facts } = useAbout()
   const dispatch = useDispatch()
+
   const [tempCertificates, setTempCertificates] = useState(facts.certificates)
   const [tempExperiencesYear, setTempExperiencesYear] = useState(
     facts.experienceYears

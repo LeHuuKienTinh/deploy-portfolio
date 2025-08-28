@@ -1,6 +1,6 @@
-import { useUpdateUser } from '../authentication/useUpdateUser'
+import { useUpdateUser } from '../../authentication/useUpdateUser'
 import { useState } from 'react'
-import supabase from '../../services/supabase'
+import supabase from '../../../services/supabase'
 
 import { Col, ConfigProvider, Row, Upload } from 'antd'
 import ImgCrop from 'antd-img-crop'
@@ -14,10 +14,10 @@ import {
 } from 'react-icons/md'
 import { FaBirthdayCake, FaPhone, FaAddressCard } from 'react-icons/fa'
 import styled from 'styled-components'
-import StyleButton from '../../components/Button'
-import { updateDataUser } from '../userInfoSlice'
+import StyleButton from '../../../components/Button'
+import { updateDataUser } from '../../../slice/userInfoSlice'
 import { useDispatch } from 'react-redux'
-import { useUser } from '../authentication/useUser'
+import { useUser } from '../../authentication/useUser'
 
 //VALIDATIE
 const validationSchema = Yup.object().shape({

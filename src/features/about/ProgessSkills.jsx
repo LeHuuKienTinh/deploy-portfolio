@@ -1,4 +1,4 @@
-import useSkill from '../Skills/useSkill'
+import useAbout from '../../hooks/useAbout'
 
 import { Col, ConfigProvider, Progress, Row } from 'antd'
 import styled from 'styled-components'
@@ -7,7 +7,7 @@ const StyleProgress = styled.div`
   padding: 0 2rem;
 `
 export default function ProgessSkills() {
-  const skills = useSkill()
+  const { skills } = useAbout()
   return (
     <ConfigProvider
       theme={{

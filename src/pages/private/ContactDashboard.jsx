@@ -1,15 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchContacts,
-  selectAllContacts,
-  selectStatusContacts,
-} from '../features/contact/contactsSlice'
+import { fetchContacts } from '../../slice/contactsSlice'
 import styled from 'styled-components'
 
-import LoadingComponent from '../components/LoadingComponent'
-import ContactTable from '../features/dashboard/contact/ContactTable'
-import Heading from '../components/Heading'
+import LoadingComponent from '../../components/LoadingComponent'
+import ContactTable from '../../features/dashboard/contact/ContactTable'
+import Heading from '../../components/Heading'
+import useStatus from '../../hooks/useStatus'
 
 const StyledContactDashboard = styled.div`
   display: flex;
@@ -21,15 +18,14 @@ const StyledContactDashboard = styled.div`
 
 export default function ContactDashboard() {
   const dispatch = useDispatch()
-
-  const statusContacts = useSelector(selectStatusContacts)
+  const { isLoadingContacts } = useStatus()
 
   useEffect(() => {
     dispatch(fetchContacts())
   }, [dispatch])
 
   return (
-    <LoadingComponent isLoading={statusContacts === 'idle'}>
+    <LoadingComponent isLoading={isLoadingContacts}>
       <StyledContactDashboard>
         <Heading as='h2'>Contact Message</Heading>
         <ContactTable />

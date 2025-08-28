@@ -1,9 +1,15 @@
 import styled from 'styled-components'
-import HeroImgLight from '../assets/hero-bg-light.jpg'
-import HeroImgDark from '../assets/hero-bg-dark.png'
-import Heading from '../components/Heading'
-import Button from '../components/Button'
+import HeroImgLight from '../../assets/hero-bg-light.jpg'
+import HeroImgDark from '../../assets/hero-bg-dark.png'
+import Heading from '../../components/Heading'
+import Button from '../../components/Button'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import {
+  selectAllDataUser,
+} from '../../slice/userInfoSlice'
+import useStatus from '../../hooks/useStatus'
+import LoadingFullPage from '../../components/LoadingFullPage'
 
 const StyleHome = styled.section`
   position: relative;
@@ -37,12 +43,13 @@ const StyleHeadingHome = styled.div`
 
 export default function Home() {
   const navigate = useNavigate()
+  const user = useSelector(selectAllDataUser)
 
   return (
     <StyleHome>
       <StyleCenterContent>
         <StyleHeadingHome>
-          <Heading as='h1'>Kelly Adams</Heading>
+          <Heading as='h1'>{user.fullName}</Heading>
           <Heading as='h3'>
             I'm a professional illustrator from San Francisco
           </Heading>

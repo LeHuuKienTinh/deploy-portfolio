@@ -1,8 +1,8 @@
 import React from 'react'
-import Container from '../components/Container'
+import Container from '../../components/Container'
 import styled from 'styled-components'
-import HeadingPageComponent from '../components/HeadingPageComponent'
-import ProgessSkills from '../features/about/ProgessSkills'
+import HeadingPageComponent from '../../components/HeadingPageComponent'
+import ProgessSkills from '../../features/about/ProgessSkills'
 
 const StyleSkills = styled.section`
   height: 85vh;

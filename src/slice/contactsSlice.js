@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import toast from 'react-hot-toast'
-import { getContacts } from '../../services/apiContact'
+import { getContacts } from '../services/apiContact'
 
 const initialState = {
   contacts: [],

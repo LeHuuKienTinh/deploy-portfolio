@@ -1,12 +1,11 @@
 import { useState } from 'react'
-
 import { Button, Modal } from 'antd'
 import styled from 'styled-components'
 
-import ProgessSkills from './ProgessSkills'
 import UpdateSkillsModal from './UpdateSkillsModal'
-import Heading from '../../components/Heading'
-import HeadingPageComponent from '../../components/HeadingPageComponent'
+import Heading from '../../../components/Heading'
+import HeadingPageComponent from '../../../components/HeadingPageComponent'
+import ProgessSkills from '../../about/ProgessSkills'
 
 const StyleButton = styled.div`
   margin: 2rem 0rem 4rem 0rem;
@@ -49,9 +48,7 @@ export default function UpdateSkills() {
         width={900}
         footer={null}
       >
-        <UpdateSkillsModal
-          handleCancel={handleCancel}
-        />
+        <UpdateSkillsModal handleCancel={handleCancel} />
       </Modal>
     </>
   )
