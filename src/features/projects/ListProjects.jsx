@@ -36,7 +36,7 @@ export default function ListProjects({ activeEdit }) {
   const { sortedProjects, editId, setEditId } = useProjects()
 
   return (
-    <Row gutter={[48]}>
+    <Row gutter={[24]}>
       {sortedProjects.map((project, index) => (
         <Col xs={24} lg={12} key={index}>
           {activeEdit ? (

@@ -20,7 +20,7 @@ const projectsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
-        state.status = 'pending'
+        state.status = 'idle'
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.status = 'succeeded'

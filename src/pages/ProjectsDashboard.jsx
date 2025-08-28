@@ -1,9 +1,17 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+import {
+  fetchProjects,
+  selectStatusProjects,
+} from '../features/projects/ProjectsSlice'
 
 import Heading from '../components/Heading'
 import ListProjects from '../features/projects/ListProjects'
 import ModalProjectEdit from '../features/dashboard/projects/ModalProjectEdit'
 import useProjects from '../features/projects/useProjects'
+import LoadingComponent from '../components/LoadingComponent'
 
 const StyledButton = styled.button`
   position: fixed;
@@ -40,6 +48,14 @@ const StyledButton = styled.button`
   }
 `
 
+const StyedProjectsDashboard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+`
+
 export default function ProjectsDashboard() {
   const {
     activeEdit,
@@ -48,24 +64,39 @@ export default function ProjectsDashboard() {
     setIsOpenModal: setIsOpenModalCreate,
   } = useProjects()
 
+  const dispatch = useDispatch()
+
+  const statusProjects = useSelector(selectStatusProjects)
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch])
+
   return (
-    <>
-      <Heading as='h2'>Projects {!activeEdit ? 'Preview' : 'Editting'}</Heading>
-      <StyledButton $right={'10px'} onClick={() => setIsOpenModalCreate(true)}>
-        Create Project
-      </StyledButton>
-      <StyledButton
-        $right={'200px'}
-        $activeEdit={activeEdit}
-        onClick={HandleOnActiveEdit}
-      >
-        {!activeEdit ? 'Edit Project' : 'Save'}
-      </StyledButton>
-      <ListProjects activeEdit={activeEdit} />
-      <ModalProjectEdit
-        isOpenModal={isOpenModalCreate}
-        onCancel={() => setIsOpenModalCreate(false)}
-      />
-    </>
+    <LoadingComponent isLoading={statusProjects === 'idle'}>
+      <StyedProjectsDashboard>
+        <Heading as='h2'>
+          Projects {!activeEdit ? 'Preview' : 'Editting'}
+        </Heading>
+        <StyledButton
+          $right={'10px'}
+          onClick={() => setIsOpenModalCreate(true)}
+        >
+          Create Project
+        </StyledButton>
+        <StyledButton
+          $right={'200px'}
+          $activeEdit={activeEdit}
+          onClick={HandleOnActiveEdit}
+        >
+          {!activeEdit ? 'Edit Project' : 'Save'}
+        </StyledButton>
+        <ListProjects activeEdit={activeEdit} />
+        <ModalProjectEdit
+          isOpenModal={isOpenModalCreate}
+          onCancel={() => setIsOpenModalCreate(false)}
+        />
+      </StyedProjectsDashboard>
+    </LoadingComponent>
   )
 }

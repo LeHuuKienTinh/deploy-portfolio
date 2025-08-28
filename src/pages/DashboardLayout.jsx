@@ -33,13 +33,10 @@ const Main = styled.main`
   grid-template-rows: auto 1fr;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     padding: 2rem;
     padding-top: 3rem;
     grid-column: 1;
-  }
-  @media (max-width: 476px) {
-    margin-top: 120px;
   }
 `
 const Container = styled.div`
@@ -54,15 +51,8 @@ const SocialWrapper = styled.div`
   justify-self: end;
 `
 export default function DashboardLayout() {
-  const dispatch = useDispatch()
-  const status = useSelector(selectStatusProjects)
-
-  useEffect(() => {
-    dispatch(fetchProjects())
-  }, [dispatch])
-
   return (
-    <LoadingFullPage isLoading={status === 'idle'}>
+    <>
       <StyledAppLayout>
         <Sidebar />
         <Main>
@@ -75,6 +65,6 @@ export default function DashboardLayout() {
         </Main>
       </StyledAppLayout>
       <Footer />
-    </LoadingFullPage>
+    </>
   )
 }

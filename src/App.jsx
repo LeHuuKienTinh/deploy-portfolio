@@ -45,6 +45,7 @@ function App() {
                 </ProtectedRoute>
               }
             >
+              <Route index element={<Navigate replace to='about' />} />
               <Route path='about' element={<AboutDashboard />} />
               <Route path='projects' element={<ProjectsDashboard />} />
               <Route path='contact' element={<ContactDashboard />} />

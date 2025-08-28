@@ -3,6 +3,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { useLogout } from '../features/authentication/useLogout'
+import { MdContactEmergency } from 'react-icons/md'
+import { FaBlogger, FaProjectDiagram } from 'react-icons/fa'
+import { RiContactsLine } from 'react-icons/ri'
 
 const NavList = styled.ul`
   display: flex;
@@ -57,22 +60,22 @@ export default function MainNavDashboard() {
         <strong> Main Menu</strong>
         <li>
           <StyledNavLink to='/dashboard/about'>
-            <span>About</span>
+            <MdContactEmergency /> About
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to='/dashboard/projects'>
-            <span>Projects</span>
+            <FaProjectDiagram /> Projects
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to='/dashboard/contact'>
-            <span>Contact</span>
+            <RiContactsLine /> Contact
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to='/dashboard/blog'>
-            <span>Blog</span>
+            <FaBlogger /> Blog
           </StyledNavLink>
         </li>
         <strong> Settings</strong>
