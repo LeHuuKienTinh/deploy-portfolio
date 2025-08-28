@@ -1,8 +1,7 @@
 import ErrorComponent from './ErrorComponent'
-import Spinner from './Spinner'
 import SpinnerFullPage from './SpinnerFullPage'
 
-function LoadingComponent({ children, isLoading, error = null }) {
+function LoadingFullPage({ children, isLoading, error = null }) {
   if (isLoading) {
     return <SpinnerFullPage />
   }
@@ -13,4 +12,4 @@ function LoadingComponent({ children, isLoading, error = null }) {
 
   return children
 }
-export default LoadingComponent
+export default LoadingFullPage

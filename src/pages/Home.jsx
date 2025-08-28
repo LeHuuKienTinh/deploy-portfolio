@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import HeroImgLight from '../assets/hero-bg-light.jpg'
 import HeroImgDark from '../assets/hero-bg-dark.png'
 import Heading from '../components/Heading'
-import StyleButton from '../components/Button'
+import Button from '../components/Button'
 import { useNavigate } from 'react-router-dom'
 
 const StyleHome = styled.section`
@@ -48,7 +48,7 @@ export default function Home() {
           </Heading>
         </StyleHeadingHome>
 
-        <StyleButton onClick={() => navigate('/about')}>About me</StyleButton>
+        <Button onClick={() => navigate('/about')}>About me</Button>
       </StyleCenterContent>
     </StyleHome>
   )
