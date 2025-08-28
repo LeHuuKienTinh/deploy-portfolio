@@ -1,7 +1,8 @@
+import { useUser } from '../authentication/useUser'
 import styled from 'styled-components'
-import Heading from '../../components/Heading'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Col, Row } from 'antd'
+import Heading from '../../components/Heading'
 
 const StyleInfoContent = styled.div`
   display: flex;
@@ -19,21 +20,15 @@ const StyleContent = styled.p`
   margin-bottom: 1.6rem;
   font-style: ${(props) => (props.type === 'italic' ? 'italic' : 'normal')};
 `
-const StyleMainInfo = styled.div`
-  display: flex;
-  gap: 20rem;
-`
-const StyleInfoCol = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`
 const StyleList = styled.li`
   margin-bottom: 1.8rem;
   display: flex;
   align-items: center;
 `
 export default function InfoContent() {
+  const {user : {user_metadata}} = useUser()
+  const {fullName, email, birthdate, phoneNumber, degree, address} = user_metadata
+
   return (
     <StyleInfoContent>
       <Heading as='h3'> UI/UX Designer & Web Developer.</Heading>
@@ -46,19 +41,15 @@ export default function InfoContent() {
           <ul>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Birthday: </b> &nbsp; <span>1 May 1995</span>
+              <b>Name: </b> &nbsp; <span>{fullName}</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Website: </b> &nbsp; <span>www.example.com</span>
+              <b>Email: </b> &nbsp; <span>{email}</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Phone: </b> &nbsp; <span>+123 456 7890</span>
-            </StyleList>
-            <StyleList>
-              <IoIosArrowForward size='20' />
-              <b>City: </b> &nbsp; <span>New York, USA</span>
+              <b>Birthdate: </b> &nbsp; <span>{birthdate}</span>
             </StyleList>
           </ul>
         </Col>
@@ -66,19 +57,15 @@ export default function InfoContent() {
           <ul>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Age: </b> &nbsp; <span>30</span>
+              <b>Phone: </b> &nbsp; <span>{phoneNumber}</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Degree: </b> &nbsp; <span>Master</span>
+              <b>Degree: </b> &nbsp; <span>{degree}</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Email: </b> &nbsp; <span>admi@gmail.com</span>
-            </StyleList>
-            <StyleList>
-              <IoIosArrowForward size='20' />
-              <b>Freelance: </b> &nbsp; <span>Available</span>
+              <b>Address: </b> &nbsp; <span>{address}</span>
             </StyleList>
           </ul>
         </Col>

@@ -1,7 +1,9 @@
 import { Outlet } from 'react-router-dom'
-import Sidebar from '../components/Sidebar'
 import styled from 'styled-components'
+
+import Sidebar from '../components/Sidebar'
 import SocialGroup from '../components/SocialGroup'
+import Footer from '../components/Footer'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -9,11 +11,10 @@ const StyledAppLayout = styled.div`
   grid-template-rows: auto 1fr;
   min-height: 100vh;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     grid-template-columns: 1fr;
   }
 `
-
 const Main = styled.main`
   min-height: 100vh;
   background-color: var(--color-grey-50);
@@ -33,7 +34,7 @@ const Main = styled.main`
   }
 `
 const Container = styled.div`
-width: 100%;
+  width: 100%;
   max-width: 120rem;
   margin: 0 auto;
   display: flex;
@@ -45,16 +46,19 @@ const SocialWrapper = styled.div`
 `
 export default function AppLayout() {
   return (
-    <StyledAppLayout>
-      <Sidebar />
-      <Main>
-        <SocialWrapper>
-          <SocialGroup />
-        </SocialWrapper>
-        <Container>
-          <Outlet />
-        </Container>
-      </Main>
-    </StyledAppLayout>
+    <>
+      <StyledAppLayout>
+        <Sidebar />
+        <Main>
+          <SocialWrapper>
+            <SocialGroup />
+          </SocialWrapper>
+          <Container>
+            <Outlet />
+          </Container>
+        </Main>
+      </StyledAppLayout>
+      <Footer />
+    </>
   )
 }

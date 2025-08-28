@@ -1,8 +1,9 @@
 import { Card, ConfigProvider } from 'antd'
-import InfoContent from './InfoContent'
 import { Row, Col } from 'antd'
-import Avata2 from '../../assets/avt-2.jpg'
 import styled from 'styled-components'
+
+import InfoContent from './InfoContent'
+import Avata2 from '../../assets/avt-2.jpg'
 
 const StyleAvata = styled.img`
   width: 40rem;

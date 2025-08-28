@@ -1,12 +1,12 @@
 import { Formik } from 'formik'
 import { Form, Input } from 'formik-antd'
+import * as Yup from 'yup'
 import styled from 'styled-components'
-import StyleButton from '../../components/Button'
+import StyleButton from '../../components/Button' 
 import Heading from '../../components/Heading'
 import { ConfigProvider } from 'antd'
 import { useLogin } from './useLogin'
 import { NavLink } from 'react-router-dom'
-import * as Yup from 'yup'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Email is invalid!').required('Email is required!'),

@@ -31,30 +31,15 @@ export async function logout() {
   if (error) throw new Error(error.message)
 }
 
-export async function updateCurrentUser({ password, fullName, avatar }) {
-  let updateData
-  if (password) updateData = { password }
-  if (fullName) updateData = { data: { fullName } }
+export async function updateCurrentUser(updateData) {
 
-  const { data, error } = await supabase.auth.updateUser(updateData)
-
-  if (error) throw new Error(error.message)
-  if (!avatar) return data
-
-  const fileName = `avatar-${data.user.id}-${Math.random()}`
-  const { error: storageError } = await supabase.storage
-    .from('avatars')
-    .upload(fileName, avatar)
-
-  if (storageError) throw new Error(storageError.message)
-
-  const { data: updatedUser, error: error2 } = await supabase.auth.updateUser({
-    data: {
-      avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
-    },
+  const { error } = await supabase.auth.updateUser({
+    data: updateData,
   })
+  if (error) throw new Error(error.message)
 
-  if (error2) throw new Error(error2.message)
-
-  return updatedUser
+  const { data: freshData, error: fetchError } = await supabase.auth.getUser()
+  if (fetchError) throw new Error(fetchError.message)
+    
+  return freshData.user.user_metadata
 }
