@@ -1,22 +1,17 @@
-import { useState } from 'react'
 import ProjectItemView from './ProjectItemView'
 import { ConfigProvider } from 'antd'
 import ModalProjectEdit from '../dashboard/projects/ModalProjectEdit'
+import useProjects from './useProjects'
 
-export default function ProjectItem({ project = {}, activeEdit = false }) {
-  const [open, setOpen] = useState(false)
-
-  const showModal = () => {
-    if (activeEdit) setOpen(true)
-  }
-
-  const handleCancel = () => {
-    setOpen(false)
-  }
+export default function ProjectItem({ project = {}, activeEdit }) {
+  const {
+    isOpenModal: isOpenModalUpdate,
+    setIsOpenModal: setIsOpenModalUpdate,
+  } = useProjects()
 
   return (
     <>
-      <div onClick={showModal}>
+      <div onClick={() => activeEdit && setIsOpenModalUpdate(true)}>
         <ProjectItemView project={project} />
       </div>
       <ConfigProvider
@@ -30,10 +25,9 @@ export default function ProjectItem({ project = {}, activeEdit = false }) {
         }}
       >
         <ModalProjectEdit
-          onOpen={setOpen}
           project={project}
-          onCancel={handleCancel}
-          open={open}
+          isOpenModal={isOpenModalUpdate}
+          onCancel={() => setIsOpenModalUpdate(false)}
         />
       </ConfigProvider>
     </>

@@ -1,10 +1,8 @@
 import { Button, Card, Col, ConfigProvider, Popconfirm, Row } from 'antd'
-import { parse } from 'date-fns'
 import styled from 'styled-components'
 
 import ProjectItem from './ProjectItem'
-import { useDispatch } from 'react-redux'
-import { deleteProject } from './ProjectsSlice'
+import useProjects from './useProjects'
 
 const StyleCardProjectItem = styled(Card)`
   position: relative;
@@ -34,38 +32,15 @@ const StyledPopConfirm = styled(Popconfirm)`
   }
 `
 
-export default function ListProjects({
-  projects,
-  onEditId,
-  editId,
-  activeEdit = false,
-}) {
-  const dispatch = useDispatch()
-
-  const sortedProjects = [...projects].sort((a, b) => {
-    const endDateA = parse(
-      a.durationdate.split(' - ')[1],
-      'MMM yyyy',
-      new Date()
-    )
-    const endDateB = parse(
-      b.durationdate.split(' - ')[1],
-      'MMM yyyy',
-      new Date()
-    )
-    return endDateB - endDateA
-  })
-
-  function handleOk(projectId) {
-    dispatch(deleteProject(projectId))
-  }
+export default function ListProjects({ activeEdit }) {
+  const { sortedProjects, editId, setEditId } = useProjects()
 
   return (
     <Row gutter={[48]}>
       {sortedProjects.map((project, index) => (
         <Col xs={24} lg={12} key={index}>
           {activeEdit ? (
-            <div onClick={() => onEditId(project.id)}>
+            <div onClick={() => setEditId(project.id)}>
               <ConfigProvider
                 theme={{
                   token: {
