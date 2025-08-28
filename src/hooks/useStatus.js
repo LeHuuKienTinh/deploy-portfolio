@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux'
-import { selectAllDataUser, selectStatusDataUser } from '../slice/userInfoSlice'
-import { selectAllSkills, selectSkillsStatus } from '../slice/skillSlice'
-import { selectAllFacts, selectFactsStatus } from '../slice/factSlice'
-import { selectAllProjects, selectStatusProjects } from '../slice/ProjectsSlice'
-import { selectAllContacts, selectStatusContacts } from '../slice/contactsSlice'
+import { selectStatusDataUser } from '../slice/userInfoSlice'
+import { selectSkillsStatus } from '../slice/skillSlice'
+import { selectFactsStatus } from '../slice/factSlice'
+import { selectStatusProjects } from '../slice/ProjectsSlice'
+import { selectStatusContacts } from '../slice/contactsSlice'
 
 function useStatus() {
   const statusUser = useSelector(selectStatusDataUser)
@@ -12,11 +12,13 @@ function useStatus() {
   const statusProjects = useSelector(selectStatusProjects)
   const statusContacts = useSelector(selectStatusContacts)
 
-  const isLoadingUser = statusUser === 'pending'
-  const isLoadingSkills = statusSkills === 'pending'
-  const isLoadingFacts = statusFacts === 'pending'
-  const isLoadingProjects = statusProjects === 'pending'
-  const isLoadingContacts = statusContacts === 'pending'
+  const isLoadingUser = statusUser === 'pending' || statusUser === 'idle'
+  const isLoadingSkills = statusSkills === 'pending' || statusSkills === 'idle'
+  const isLoadingFacts = statusFacts === 'pending' || statusFacts === 'idle'
+  const isLoadingProjects =
+    statusProjects === 'pending' || statusProjects === 'idle'
+  const isLoadingContacts =
+    statusContacts === 'pending' || statusContacts === 'idle'
 
   return {
     isLoadingUser,
