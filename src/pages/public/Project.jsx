@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import useStatus from '../../hooks/useStatus'
 
-import { fetchProjects } from '../../slice/ProjectsSlice'
+import { fetchProjects } from '../../slice/projectsSlice'
 
 import ListProjects from '../../features/projects/ListProjects'
 import HeadingPageComponent from '../../components/HeadingPageComponent'

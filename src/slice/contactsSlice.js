@@ -16,7 +16,7 @@ const contactsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, (state) => {
-        state.status = 'idle'
+        state.status = 'pending'
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.status = 'succeeded'

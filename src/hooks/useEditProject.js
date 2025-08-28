@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
 import { convertArrayToRange, convertRangeToISO } from '../utils/helpers'
-import { createProject, updateProject } from '../slice/ProjectsSlice'
+import { createProject, updateProject } from '../slice/projectsSlice'
 
 export const ProjectSchema = Yup.object().shape({
   title: Yup.string().required('Title is required'),
