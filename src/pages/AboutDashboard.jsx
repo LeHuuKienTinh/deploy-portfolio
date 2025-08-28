@@ -1,9 +1,5 @@
 import { useState } from 'react'
 import { useUser } from '../features/authentication/useUser'
-import Heading from '../components/Heading'
-import { Button, Card, Col, ConfigProvider, Row } from 'antd'
-import InfoContent from '../features/about/InfoContent'
-import styled from 'styled-components'
 
 import { Button, Card, Col, ConfigProvider, Modal, Row } from 'antd'
 
@@ -13,6 +9,11 @@ import UpdateInfoModal from '../features/about/UpdateInfoModal'
 import UpdateSkills from '../features/about/UpdateSkills'
 import Heading from '../components/Heading'
 import UpdateFacts from '../features/about/UpdateFacts'
+import { useSelector } from 'react-redux'
+import {
+  selectAllDataUser,
+  selectStatusDataUser,
+} from '../features/userInfoSlice'
 
 const StyleAboutDashboard = styled.div`
   & h2 {
@@ -28,11 +29,15 @@ const StyleButton = styled.div`
   justify-content: flex-end;
 `
 export default function AboutDashboard() {
-  const {
-    user: { user_metadata },
-  } = useUser()
-  const { avatar } = user_metadata
+  const data = useSelector(selectAllDataUser)
+  const status = useSelector(selectStatusDataUser)
   const [isModalOpen, setIsModalOpen] = useState(false)
+
+  if (status === 'pending') {
+    return <div>Loading...</div>
+  }
+
+  const { avatar } = data[0]
 
   const showModal = () => {
     setIsModalOpen(true)
@@ -97,10 +102,7 @@ export default function AboutDashboard() {
           width={900}
           footer={null}
         >
-          <UpdateInfoModal
-            handleCancel={handleCancel}
-            user_metadata={user_metadata}
-          />
+          <UpdateInfoModal handleCancel={handleCancel} data={data[0]} />
         </Modal>
         <UpdateSkills />
         <UpdateFacts />

@@ -1,11 +1,11 @@
 import supabase from './supabase'
 
-export const getSkillsApi = async (userID) => {
+export const getSkillsApi = async () => {
   try {
     const { data, error } = await supabase
       .from('skills')
       .select('*')
-      .eq('userID', userID)
+      .eq('userID', import.meta.env.VITE_USER_ID)
       .order('createdAt', { ascending: true })
 
     if (error) throw error

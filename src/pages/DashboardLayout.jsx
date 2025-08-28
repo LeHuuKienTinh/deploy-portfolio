@@ -13,6 +13,9 @@ import Sidebar from '../components/Sidebar'
 import SocialGroup from '../components/SocialGroup'
 import styled from 'styled-components'
 import LoadingFullPage from '../components/LoadingFullPage'
+import { fetchFacts } from '../features/Facts/factSlice'
+import { fetchDataUser } from '../features/userInfoSlice'
+import { fetchSkills } from '../features/Skills/skillSlice'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -58,6 +61,9 @@ export default function DashboardLayout() {
   const status = useSelector(selectStatusProjects)
 
   useEffect(() => {
+    dispatch(fetchSkills())
+    dispatch(fetchFacts())
+    dispatch(fetchDataUser())
     dispatch(fetchProjects())
   }, [dispatch])
 

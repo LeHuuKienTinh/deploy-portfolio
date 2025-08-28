@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Col, Row } from 'antd'
 import Heading from '../../components/Heading'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllDataUser, selectStatusDataUser } from '../userInfoSlice'
+import { format } from 'date-fns'
 
 const StyleInfoContent = styled.div`
   display: flex;
@@ -26,8 +29,14 @@ const StyleList = styled.li`
   align-items: center;
 `
 export default function InfoContent() {
-  const {user : {user_metadata}} = useUser()
-  const {fullName, email, birthdate, phoneNumber, degree, address} = user_metadata
+  const data = useSelector(selectAllDataUser)
+  const status = useSelector(selectStatusDataUser)
+
+  if (status === 'pending') {
+    return <div>Loading...</div>
+  }
+
+  const { fullName, email, birthdate, phone, degree, address } = data[0]
 
   return (
     <StyleInfoContent>
@@ -49,7 +58,10 @@ export default function InfoContent() {
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Birthdate: </b> &nbsp; <span>{birthdate}</span>
+              <b>Birthdate: </b> &nbsp;{' '}
+              <span>
+                {<span>{format(new Date(birthdate), 'dd/MM/yyyy')}</span>}
+              </span>
             </StyleList>
           </ul>
         </Col>
@@ -57,7 +69,7 @@ export default function InfoContent() {
           <ul>
             <StyleList>
               <IoIosArrowForward size='20' />
-              <b>Phone: </b> &nbsp; <span>{phoneNumber}</span>
+              <b>Phone: </b> &nbsp; <span>{phone}</span>
             </StyleList>
             <StyleList>
               <IoIosArrowForward size='20' />
