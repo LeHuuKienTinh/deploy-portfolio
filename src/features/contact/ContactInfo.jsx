@@ -20,7 +20,7 @@ const StyleCard = styled(Card)`
 
 export default function ContactInfo() {
   const userInfo = useSelector(selectAllDataUser)
-  console.log(userInfo)
+  
   return (
     <StyleInfoWrap>
       <ConfigProvider
