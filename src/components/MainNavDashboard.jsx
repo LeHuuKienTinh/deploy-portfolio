@@ -73,11 +73,6 @@ export default function MainNavDashboard() {
             <RiContactsLine /> Contact
           </StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to='/dashboard/blog'>
-            <FaBlogger /> Blog
-          </StyledNavLink>
-        </li>
         <strong> Settings</strong>
         <li>
           <Button block onClick={() => logout()}>

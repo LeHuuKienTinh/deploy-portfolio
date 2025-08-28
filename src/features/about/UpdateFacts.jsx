@@ -1,41 +1,44 @@
 import { useState } from 'react'
 import HeadingPageComponent from '../../components/HeadingPageComponent'
-import { Button, Col, Modal, Row } from 'antd'
+import { Button, Col, Popconfirm, Row } from 'antd'
 import Heading from '../../components/Heading'
-import UpdateSkillsModal from './UpdateSkillsModal'
 import styled from 'styled-components'
 import useSkill from '../Skills/useSkill'
 import { useDispatch, useSelector } from 'react-redux'
-import { incrementCertificates } from '../Facts/factSlice'
-
-const StyleButton = styled.div`
-  margin: 2rem 0rem 4rem 0rem;
-  display: flex;
-  justify-content: flex-end;
-`
+import { updateFacts } from '../Facts/factSlice'
+import useFacts from '../Facts/useFacts'
+import { useUser } from '../authentication/useUser'
 
 const StyleColCenter = styled(Col)`
   text-align: center;
 `
 
+const StyleButtonPlusMinus = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`
+
 export default function UpdateFacts() {
+  const { user } = useUser()
   const skills = useSkill()
+  const facts = useFacts()
   const dispatch = useDispatch()
-  const { certificates, experienceYears } = useSelector((state) => state.facts)
-  console.log(certificates, experienceYears)
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [tempCertificates, setTempCertificates] = useState(facts.certificates)
+  const [tempExperiencesYear, setTempExperiencesYear] = useState(
+    facts.experienceYears
+  )
 
-  const showModal = () => {
-    setIsModalOpen(true)
+  const confirm = (field, value) => {
+    dispatch(
+      updateFacts({
+        userID: user.id,
+        field: field,
+        value: value,
+      })
+    )
   }
 
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false)
-  }
   return (
     <>
       <HeadingPageComponent
@@ -67,11 +70,35 @@ export default function UpdateFacts() {
           <Row justify='center' align='middle'>
             <StyleColCenter>
               <Col span={24}>
-                <Heading as='h2'>{certificates}</Heading>
+                <Heading as='h2'>{facts.certificates}</Heading>
                 <p>Certificate</p>
-                <Button onClick={() => dispatch(incrementCertificates())}>
-                  +1 Certificate
-                </Button>
+                <Popconfirm
+                  color='var(--color-grey-100)'
+                  showCancel={false}
+                  description={
+                    <StyleButtonPlusMinus>
+                      <Button
+                        onClick={() =>
+                          setTempCertificates(tempCertificates - 1)
+                        }
+                      >
+                        -
+                      </Button>
+                      <span>{tempCertificates}</span>
+                      <Button
+                        onClick={() =>
+                          setTempCertificates(tempCertificates + 1)
+                        }
+                      >
+                        +
+                      </Button>
+                    </StyleButtonPlusMinus>
+                  }
+                  onConfirm={() => confirm('certificates', tempCertificates)}
+                  placement='bottom'
+                >
+                  <Button>Update</Button>
+                </Popconfirm>
               </Col>
             </StyleColCenter>
           </Row>
@@ -80,25 +107,42 @@ export default function UpdateFacts() {
           <Row justify='center' align='middle'>
             <StyleColCenter>
               <Col span={24}>
-                <Heading as='h2'>{experienceYears}</Heading>
+                <Heading as='h2'>{facts.experienceYears}</Heading>
                 <p>Year Experience</p>
+                <Popconfirm
+                  color='var(--color-grey-100)'
+                  showCancel={false}
+                  description={
+                    <StyleButtonPlusMinus>
+                      <Button
+                        onClick={() =>
+                          setTempExperiencesYear(tempExperiencesYear - 1)
+                        }
+                      >
+                        -
+                      </Button>
+                      <span>{tempExperiencesYear}</span>
+                      <Button
+                        onClick={() =>
+                          setTempExperiencesYear(tempExperiencesYear + 1)
+                        }
+                      >
+                        +
+                      </Button>
+                    </StyleButtonPlusMinus>
+                  }
+                  onConfirm={() =>
+                    confirm('experienceyears', tempExperiencesYear)
+                  }
+                  placement='bottom'
+                >
+                  <Button>Update</Button>
+                </Popconfirm>
               </Col>
             </StyleColCenter>
           </Row>
         </Col>
       </Row>
-      <Modal
-        title={<Heading as='h3'>Update Skills </Heading>}
-        closable={{ 'aria-label': 'Custom Close Button' }}
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        zIndex={30000}
-        width={900}
-        footer={null}
-      >
-        <UpdateSkillsModal handleCancel={handleCancel} />
-      </Modal>
     </>
   )
 }

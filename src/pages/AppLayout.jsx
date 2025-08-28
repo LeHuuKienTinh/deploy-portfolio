@@ -9,6 +9,9 @@ import {
   selectStatusProjects,
 } from '../features/projects/ProjectsSlice'
 import LoadingFullPage from '../components/LoadingFullPage'
+import { fetchSkills } from '../features/Skills/skillSlice'
+import { fetchFacts } from '../features/Facts/factSlice'
+import { fetchDataUser } from '../features/userInfoSlice'
 
 const StyleMainWrapper = styled.main`
   background-color: var(--color-grey-0);
@@ -18,8 +21,11 @@ export default function AppLayout() {
   const status = useSelector(selectStatusProjects)
 
   useEffect(() => {
+    dispatch(fetchSkills())
+    dispatch(fetchFacts())
+    dispatch(fetchDataUser())
     dispatch(fetchProjects())
-  }, [dispatch])
+  }, [dispatch])  
 
   return (
     <LoadingFullPage isLoading={status === 'idle'}>

@@ -27,10 +27,6 @@ const items = [
     key: '/contact',
   },
   {
-    label: <NavLink to='blog'>Blog</NavLink>,
-    key: '/blog',
-  },
-  {
     label: <NavLink to='login'>Change Info</NavLink>,
     key: '/login',
   },

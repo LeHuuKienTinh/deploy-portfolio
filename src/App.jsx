@@ -10,7 +10,6 @@ import SpinnerFullPage from './components/SpinnerFullPage'
 const Home = lazy(() => import('./pages/Home'))
 const AppLayout = lazy(() => import('./pages/AppLayout'))
 const Project = lazy(() => import('./pages/Project'))
-const Blog = lazy(() => import('./pages/Blog'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 
@@ -20,7 +19,6 @@ const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
 const AboutDashboard = lazy(() => import('./pages/AboutDashboard'))
 const ProjectsDashboard = lazy(() => import('./pages/ProjectsDashboard'))
 const ContactDashboard = lazy(() => import('./pages/ContactDashboard'))
-const BlogDashboard = lazy(() => import('./pages/BlogDashboard'))
 
 function App() {
   return (
@@ -33,7 +31,6 @@ function App() {
               <Route index element={<Navigate replace to='/home' />} />
               <Route path='/home' element={<Home />} />
               <Route path='projects' element={<Project />} />
-              <Route path='blog' element={<Blog />} />
               <Route path='contact' element={<Contact />} />
               <Route path='about' element={<About />} />
             </Route>
@@ -49,7 +46,6 @@ function App() {
               <Route path='about' element={<AboutDashboard />} />
               <Route path='projects' element={<ProjectsDashboard />} />
               <Route path='contact' element={<ContactDashboard />} />
-              <Route path='blog' element={<BlogDashboard />} />
             </Route>
             <Route path='login' element={<Login />} />
           </Routes>
