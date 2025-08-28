@@ -14,17 +14,14 @@ const initialState = {
 
 //ASYNC THUNK
 
-export const fetchSkills = createAsyncThunk(
-  'skills/fetchSkills',
-  async (userID) => {
-    try {
-      const data = await getSkillsApi(userID)
-      return data
-    } catch (error) {
-      throw error
-    }
+export const fetchSkills = createAsyncThunk('skills/fetchSkills', async () => {
+  try {
+    const data = await getSkillsApi()
+    return data
+  } catch (error) {
+    throw error
   }
-)
+})
 
 export const addSkill = createAsyncThunk(
   'skills/addSkill',

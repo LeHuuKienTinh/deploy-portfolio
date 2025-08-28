@@ -70,11 +70,6 @@ export default function MainNavDashboard() {
             <span>Contact</span>
           </StyledNavLink>
         </li>
-        <li>
-          <StyledNavLink to='/dashboard/blog'>
-            <span>Blog</span>
-          </StyledNavLink>
-        </li>
         <strong> Settings</strong>
         <li>
           <Button block onClick={() => logout()}>

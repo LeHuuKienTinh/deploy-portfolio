@@ -1,34 +1,61 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { getFactsApi, updateFactsApi } from '../../services/apiFacts'
 
 const initialState = {
-  certificates: 0,
-  experienceYears: 0,
+  factsData: {
+    certificates: null,
+    experienceYears: null,
+  },
+  status: 'idle',
+  error: null,
 }
+
+//ASYNC THUNK
+export const fetchFacts = createAsyncThunk('facts/fetchFacts', async () => {
+  try {
+    const data = await getFactsApi()
+    return data
+  } catch (error) {
+    throw error
+  }
+})
+
+export const updateFacts = createAsyncThunk(
+  'facts/updateFacts',
+  async ({ userID, field, value }, { dispatch }) => {
+    try {
+      await updateFactsApi(userID, field, value)
+      dispatch(fetchFacts())
+    } catch (error) {
+      throw error
+    }
+  }
+)
 
 const factsSlice = createSlice({
   name: 'facts',
   initialState,
-  reducers: {
-    setCertificates: (state, action) => {
-      state.certificates = action.payload
-    },
-    setExperienceYears: (state, action) => {
-      state.experienceYears = action.payload
-    },
-    incrementCertificates: (state) => {
-      state.certificates += 1
-    },
-    incrementExperience: (state) => {
-      state.experienceYears += 1
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchFacts.pending, (state) => {
+        state.status = 'pending'
+      })
+      .addCase(fetchFacts.fulfilled, (state, action) => {
+        state.status = 'success'
+        state.factsData = {
+          certificates: action.payload[0].certificates,
+          experienceYears: action.payload[0].experienceyears,
+        }
+      })
+      .addCase(fetchFacts.rejected, (state, action) => {
+        state.status = 'faild'
+        state.error = action.error.message
+      })
   },
 })
 
-export const {
-  setCertificates,
-  setExperienceYears,
-  incrementCertificates,
-  incrementExperience,
-} = factsSlice.actions
+export const selectFactsStatus = (state) => state.facts.status
+export const selectAllFacts = (state) => state.facts.factsData
 
 export default factsSlice.reducer

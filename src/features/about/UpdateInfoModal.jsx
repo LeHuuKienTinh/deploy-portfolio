@@ -5,7 +5,7 @@ import supabase from '../../services/supabase'
 import { Col, ConfigProvider, Row, Upload } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import { Formik } from 'formik'
-import { Form, Input } from 'formik-antd'
+import { Form, Input, DatePicker } from 'formik-antd'
 import * as Yup from 'yup'
 
 import {
@@ -15,12 +15,15 @@ import {
 import { FaBirthdayCake, FaPhone, FaAddressCard } from 'react-icons/fa'
 import styled from 'styled-components'
 import StyleButton from '../../components/Button'
+import { updateDataUser } from '../userInfoSlice'
+import { useDispatch } from 'react-redux'
+import { useUser } from '../authentication/useUser'
 
 //VALIDATIE
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Email is invalid!').required('Email is required!'),
   fullName: Yup.string().required('Name is required!'),
-  phoneNumber: Yup.string()
+  phone: Yup.string()
     .matches(/^[0-9]+$/, 'Must be only digits')
     .length(10)
     .required('A phone number is required'),
@@ -44,13 +47,14 @@ const validationSchema = Yup.object().shape({
 
 const StyleFormUpdate = styled.div`
   color: var(--color-grey-800);
-  input[type='date']::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
 `
-export default function UpdateInfoModal({ handleCancel, user_metadata }) {
-  const { updateUser } = useUpdateUser()
+
+const StyleDatePicker = styled(DatePicker)`
+  width: 100%;
+`
+export default function UpdateInfoModal({ handleCancel, data }) {
+  const dispatch = useDispatch()
+  const { user } = useUser()
   const [fileList, setFileList] = useState([])
 
   const onChange = ({ fileList: newFileList }) => {
@@ -58,8 +62,7 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
   }
 
   async function handleSubmit(values) {
-    let avatarUrl = user_metadata.avatar
-
+    let avatarUrl = data.avatar
     if (fileList.length > 0 && fileList[0].originFileObj) {
       const file = fileList[0].originFileObj
       const fileExt = file.name.split('.').pop()
@@ -76,14 +79,19 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
       const { data } = supabase.storage.from('Image').getPublicUrl(filePath)
       avatarUrl = data.publicUrl
     }
-    await updateUser({ ...values, avatar: avatarUrl })
+    dispatch(
+      updateDataUser({
+        userID: user.id,
+        dataUpdate: { ...values, avatar: avatarUrl },
+      })
+    )
   }
 
   return (
     <StyleFormUpdate>
       <Formik
         validationSchema={validationSchema}
-        initialValues={user_metadata}
+        initialValues={data}
         onSubmit={(values, actions) => {
           handleSubmit(values, actions)
           handleCancel()
@@ -94,6 +102,14 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
             token: {
               colorTextDisabled: 'var(--color-grey-600)',
               colorBgContainerDisabled: 'var(--color-grey-300)',
+              colorBgContainer: 'var(--color-grey-100)',
+              colorText: 'var(--color-grey-900)',
+              colorTextPlaceholder: 'var(--color-grey-500)',
+            },
+            components: {
+              DatePicker: {
+                colorBgElevated: 'var(--color-grey-50)',
+              },
             },
           }}
         >
@@ -113,7 +129,7 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
                 </Form.Item>
 
                 <Form.Item name='birthdate' label='Birthdate'>
-                  <Input
+                  <StyleDatePicker
                     name='birthdate'
                     type='date'
                     suffix={<FaBirthdayCake />}
@@ -123,7 +139,7 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
                 <Form.Item name='avatar' label='Avatar'>
                   <ImgCrop rotationSlider>
                     <Upload
-                      action='https://bkvluluamjybttmxgmoz.supabase.co/storage/v1/object/public/Image'
+                      action='https://bkvluluamjybttmxgmoz.storage.supabase.co/storage/v1/s3'
                       listType='picture-card'
                       fileList={fileList}
                       onChange={onChange}
@@ -136,8 +152,8 @@ export default function UpdateInfoModal({ handleCancel, user_metadata }) {
               </Col>
 
               <Col xs={24} sm={24} lg={12}>
-                <Form.Item name='phoneNumber' label='Phone'>
-                  <Input name='phoneNumber' suffix={<FaPhone />} />
+                <Form.Item name='phone' label='Phone'>
+                  <Input name='phone' suffix={<FaPhone />} />
                 </Form.Item>
 
                 <Form.Item name='degree' label='Degree'>
