@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import LoadingComponent from './LoadingComponent'
+import LoadingFullPage from './LoadingFullPage'
 
 import { useUser } from '../features/authentication/useUser'
 
@@ -17,5 +17,5 @@ export default function ProtectedRoute({ children }) {
   )
 
   if (isAuthenticated)
-    return <LoadingComponent isLoading={isPending}>{children}</LoadingComponent>
+    return <LoadingFullPage isLoading={isPending}>{children}</LoadingFullPage>
 }

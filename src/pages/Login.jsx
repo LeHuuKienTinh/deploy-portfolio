@@ -5,7 +5,7 @@ import HeroImgLight from '../assets/hero-bg-light.jpg'
 import HeroImgDark from '../assets/hero-bg-dark.png'
 import LoginForm from '../features/authentication/LoginForm'
 import { useUser } from '../features/authentication/useUser'
-import LoadingComponent from '../components/LoadingComponent'
+import LoadingFullPage from '../components/LoadingFullPage'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -39,7 +39,7 @@ export default function Login() {
   }, [user])
 
   return (
-    <LoadingComponent isLoading={isPending}>
+    <LoadingFullPage isLoading={isPending}>
       {!user && (
         <StyleLoginPage>
           <Row>
@@ -53,6 +53,6 @@ export default function Login() {
           </Row>
         </StyleLoginPage>
       )}
-    </LoadingComponent>
+    </LoadingFullPage>
   )
 }

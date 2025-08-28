@@ -17,6 +17,8 @@
     "antd": "^5.27.1",
     "antd-img-crop": "^4.25.0",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.14",
+    "env": "^0.0.2",
     "formik": "^2.4.6",
     "formik-antd": "^3.0.0-beta.9",
     "lucide-react": "^0.542.0",

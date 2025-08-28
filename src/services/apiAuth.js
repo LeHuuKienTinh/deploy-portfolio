@@ -1,11 +1,19 @@
 import supabase, { supabaseUrl } from './supabase'
 
-export async function signup({ fullName, email, password }) {
+export async function signup() {
   const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
+    email: 'huyltqse135@gmail.com',
+    password: '---------',
     options: {
-      data: { fullName, avatar: '' },
+      data: {
+        fullName: 'Kelly Adams',
+        avatar:
+          'https://bkvluluamjybttmxgmoz.supabase.co/storage/v1/object/public/Image/avt-2.jpg',
+        birthdate: '1995-18-11',
+        degree: '',
+        phoneNumber: '0352607701',
+        address: 'New York, USA',
+      },
     },
   })
 

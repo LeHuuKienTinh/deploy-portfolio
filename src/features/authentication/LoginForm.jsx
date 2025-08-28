@@ -2,7 +2,7 @@ import { Formik } from 'formik'
 import { Form, Input } from 'formik-antd'
 import * as Yup from 'yup'
 import styled from 'styled-components'
-import StyleButton from '../../components/Button' 
+import Button from '../../components/Button'
 import Heading from '../../components/Heading'
 import { ConfigProvider } from 'antd'
 import { useLogin } from './useLogin'
@@ -106,7 +106,7 @@ export default function LoginForm() {
               />
             </Form.Item>
             <StyleButtonWrap>
-              <StyleButton type='submit'>Login</StyleButton>
+              <Button type='submit'>Login</Button>
             </StyleButtonWrap>
           </Form>
         </Formik>

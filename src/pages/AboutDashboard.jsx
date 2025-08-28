@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { useUser } from '../features/authentication/useUser'
+import Heading from '../components/Heading'
+import { Button, Card, Col, ConfigProvider, Row } from 'antd'
+import InfoContent from '../features/about/InfoContent'
+import styled from 'styled-components'
 
 import { Button, Card, Col, ConfigProvider, Modal, Row } from 'antd'
 
@@ -99,7 +103,7 @@ export default function AboutDashboard() {
           />
         </Modal>
         <UpdateSkills />
-        <UpdateFacts/>
+        <UpdateFacts />
       </ConfigProvider>
     </StyleAboutDashboard>
   )

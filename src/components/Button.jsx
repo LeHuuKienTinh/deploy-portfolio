@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyleButton = styled.button`
+const Button = styled.button`
   background-color: var(--color-cyan-6);
   border: none;
   border-radius: 2rem;
@@ -17,4 +17,4 @@ const StyleButton = styled.button`
     outline: none;
   }
 `
-export default StyleButton
+export default Button

@@ -1,19 +1,13 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { DarkModeProvider } from './context/DarkModeContext'
-import { Provider, useDispatch, useSelector } from 'react-redux'
-import { store } from './services/store'
+import { useDispatch, useSelector } from 'react-redux'
 
 import GlobalStyles from './styles/GlobalStyles'
 import ProtectedRoute from './components/ProtectedRoute'
 import SpinnerFullPage from './components/SpinnerFullPage'
 
-import AboutDashboard from './pages/AboutDashboard'
-import ProjectsDashboard from './pages/ProjectsDashboard'
-import ContactDashboard from './pages/ContactDashboard'
-import BlogDashboard from './pages/BlogDashboard'
 import { fetchSkills } from './features/Skills/skillSlice'
 import { useUser } from './features/authentication/useUser'
 
@@ -23,16 +17,14 @@ const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
-const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
+
 const Login = lazy(() => import('./pages/Login'))
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000,
-    },
-  },
-})
+const DashboardLayout = lazy(() => import('./pages/DashboardLayout'))
+const AboutDashboard = lazy(() => import('./pages/AboutDashboard'))
+const ProjectsDashboard = lazy(() => import('./pages/ProjectsDashboard'))
+const ContactDashboard = lazy(() => import('./pages/ContactDashboard'))
+const BlogDashboard = lazy(() => import('./pages/BlogDashboard'))
 
 function App() {
   const { user } = useUser()

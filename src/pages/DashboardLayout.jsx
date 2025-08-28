@@ -1,9 +1,18 @@
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
-import styled from 'styled-components'
+
+import Footer from '../components/Footer'
+
+import {
+  fetchProjects,
+  selectStatusProjects,
+} from '../features/projects/ProjectsSlice'
 
 import Sidebar from '../components/Sidebar'
 import SocialGroup from '../components/SocialGroup'
-import Footer from '../components/Footer'
+import styled from 'styled-components'
+import LoadingFullPage from '../components/LoadingFullPage'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -44,9 +53,16 @@ const Container = styled.div`
 const SocialWrapper = styled.div`
   justify-self: end;
 `
-export default function AppLayout() {
+export default function DashboardLayout() {
+  const dispatch = useDispatch()
+  const status = useSelector(selectStatusProjects)
+
+  useEffect(() => {
+    dispatch(fetchProjects())
+  }, [dispatch])
+
   return (
-    <>
+    <LoadingFullPage isLoading={status === 'idle'}>
       <StyledAppLayout>
         <Sidebar />
         <Main>
@@ -59,6 +75,6 @@ export default function AppLayout() {
         </Main>
       </StyledAppLayout>
       <Footer />
-    </>
+    </LoadingFullPage>
   )
 }
