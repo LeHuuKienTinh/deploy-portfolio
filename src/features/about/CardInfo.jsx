@@ -4,11 +4,15 @@ import styled from 'styled-components'
 
 import InfoContent from './InfoContent'
 import Avata2 from '../../assets/avt-2.jpg'
+import { useSelector } from 'react-redux'
+import { selectAllDataUser } from '../../slice/userInfoSlice'
 
 const StyleAvata = styled.img`
   width: 40rem;
 `
 export default function CardInfo() {
+  const data = useSelector(selectAllDataUser)
+  const {avatar} = data
   return (
     <ConfigProvider
       theme={{
@@ -27,7 +31,7 @@ export default function CardInfo() {
         <Row>
           <Col xs={24} sm={24} lg={8} span={2}>
             <Row justify='center'>
-              <StyleAvata src={Avata2} alt='avata' />
+              <StyleAvata src={avatar} alt='avata' />
             </Row>
           </Col>
           <Col xs={24} sm={24} lg={16} span={16}>
