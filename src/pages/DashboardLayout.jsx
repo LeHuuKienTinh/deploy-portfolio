@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
+import Footer from '../components/Footer'
+
 import {
   fetchProjects,
   selectStatusProjects,
@@ -18,11 +20,10 @@ const StyledAppLayout = styled.div`
   grid-template-rows: auto 1fr;
   min-height: 100vh;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     grid-template-columns: 1fr;
   }
 `
-
 const Main = styled.main`
   min-height: 100vh;
   background-color: var(--color-grey-50);
@@ -73,6 +74,7 @@ export default function DashboardLayout() {
           </Container>
         </Main>
       </StyledAppLayout>
+      <Footer />
     </LoadingFullPage>
   )
 }

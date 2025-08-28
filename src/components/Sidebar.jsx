@@ -4,8 +4,6 @@ import { Menu, X } from 'lucide-react'
 import styled from 'styled-components'
 import MainNavDashboard from './MainNavDashboard'
 import LogoImg from '../assets/logo.png'
-import ButtonGroup from 'antd/es/button/button-group'
-import SocialGroup from './SocialGroup'
 
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
@@ -17,15 +15,14 @@ const StyledSidebar = styled.aside`
   z-index: 1001;
   transition: transform 0.3s ease-in-out;
 
-
-  @media (min-width: 768px) {
+  @media (min-width: 992px) {
     position: static;
     grid-column: 1/2;
     grid-row: 1/-1;
     transform: translateX(0);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     position: fixed;
     top: 0;
     left: 0;
@@ -52,13 +49,13 @@ const ToggleButton = styled.button`
     background: var(--color-brand-600);
   }
 
-  @media (min-width: 769px) {
+  @media (min-width: 992px) {
     display: none;
   }
 `
 
 const Overlay = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     position: fixed;
     top: 0;
     left: 0;
@@ -93,7 +90,6 @@ export default function Sidebar() {
       <StyledSidebar $open={open}>
         <StyleImgLogo src={LogoImg} alt='logo' />
         <MainNavDashboard />
-
       </StyledSidebar>
     </>
   )

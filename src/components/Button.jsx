@@ -5,6 +5,7 @@ const Button = styled.button`
   border: none;
   border-radius: 2rem;
   padding: 1rem 4rem;
+  margin-bottom: 1rem;
   color: var(--color-grey-0);
   font-weight: 700;
   text-transform: uppercase;

@@ -1,18 +1,53 @@
-import React from 'react'
+import { useState } from 'react'
+import { useUser } from '../features/authentication/useUser'
 import Heading from '../components/Heading'
 import { Button, Card, Col, ConfigProvider, Row } from 'antd'
 import InfoContent from '../features/about/InfoContent'
 import styled from 'styled-components'
-import Avata2 from '../assets/avt-2.jpg'
-import { signup } from '../services/apiAuth'
 
+import { Button, Card, Col, ConfigProvider, Modal, Row } from 'antd'
+
+import styled from 'styled-components'
+import InfoContent from '../features/about/InfoContent'
+import UpdateInfoModal from '../features/about/UpdateInfoModal'
+import UpdateSkills from '../features/about/UpdateSkills'
+import Heading from '../components/Heading'
+import UpdateFacts from '../features/about/UpdateFacts'
+
+const StyleAboutDashboard = styled.div`
+  & h2 {
+    text-align: center;
+  }
+`
 const StyleAvata = styled.img`
   width: 40rem;
 `
-
+const StyleButton = styled.div`
+  margin: 2rem 0rem 4rem 0rem;
+  display: flex;
+  justify-content: flex-end;
+`
 export default function AboutDashboard() {
+  const {
+    user: { user_metadata },
+  } = useUser()
+  const { avatar } = user_metadata
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const showModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleOk = () => {
+    setIsModalOpen(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+
   return (
-    <>
+    <StyleAboutDashboard>
       <Heading as='h2'>About Dashboard</Heading>
       <ConfigProvider
         theme={{
@@ -23,6 +58,10 @@ export default function AboutDashboard() {
             Button: {
               defaultBg: 'var(--color-cyan-4)',
               fontWeight: 500,
+            },
+            Modal: {
+              contentBg: 'var(--color-grey-0)',
+              headerBg: 'var(--color-grey-0)',
             },
           },
           token: {
@@ -35,7 +74,7 @@ export default function AboutDashboard() {
           <Row>
             <Col xs={24} sm={24} lg={8} span={2}>
               <Row justify='center'>
-                <StyleAvata src={Avata2} alt='avata' />
+                <StyleAvata src={`${avatar}`} alt='avata' />
               </Row>
             </Col>
             <Col xs={24} sm={24} lg={16} span={16}>
@@ -43,14 +82,29 @@ export default function AboutDashboard() {
             </Col>
           </Row>
         </Card>
-        <Button
-          onClick={() => {
-            signup()
-          }}
+        <StyleButton>
+          <Button size='large' onClick={showModal}>
+            Update
+          </Button>
+        </StyleButton>
+        <Modal
+          title={<Heading as='h3'>Update Information </Heading>}
+          closable={{ 'aria-label': 'Custom Close Button' }}
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          zIndex={30000}
+          width={900}
+          footer={null}
         >
-          Update
-        </Button>
+          <UpdateInfoModal
+            handleCancel={handleCancel}
+            user_metadata={user_metadata}
+          />
+        </Modal>
+        <UpdateSkills />
+        <UpdateFacts />
       </ConfigProvider>
-    </>
+    </StyleAboutDashboard>
   )
 }

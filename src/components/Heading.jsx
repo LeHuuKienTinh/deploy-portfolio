@@ -12,13 +12,11 @@ const Heading = styled.h1`
   ${(props) =>
     props.as === 'h2' &&
     css`
-      display: inline-flex;
       position: relative;
       justify-content: center;
       font-size: 3.2rem;
       font-weight: 600;
       padding-bottom: 1.2rem;
-      text-decoration: dashed;
       margin-bottom: 2rem;
       &::after {
         content: '';
