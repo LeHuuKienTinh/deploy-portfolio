@@ -33,7 +33,7 @@ const StyledPopConfirm = styled(Popconfirm)`
 `
 
 export default function ListProjects({ activeEdit }) {
-  const { sortedProjects, editId, setEditId } = useProjects()
+  const { sortedProjects, editId, setEditId, handleDelete } = useProjects()
 
   return (
     <Row gutter={[24]}>
@@ -55,7 +55,7 @@ export default function ListProjects({ activeEdit }) {
                     title='Delete the Project'
                     description='Are you sure to delete this Project?'
                     onConfirm={() => {
-                      handleOk(project.id)
+                      handleDelete(project.id)
                     }}
                     onCancel={() => {}}
                     okText='Yes'
