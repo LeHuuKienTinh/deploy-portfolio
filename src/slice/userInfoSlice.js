@@ -3,7 +3,7 @@ import { getDataUser, updateInfoApi } from '../services/apiInfor'
 import toast from 'react-hot-toast'
 
 const initialState = {
-  data: [],
+  data: {},
   status: 'idle',
   error: null,
 }

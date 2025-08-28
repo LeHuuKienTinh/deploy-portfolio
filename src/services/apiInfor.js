@@ -5,6 +5,7 @@ export async function getDataUser() {
     .from('information')
     .select('*')
     .eq('userID', import.meta.env.VITE_USER_ID)
+    .single()
   if (error) throw error
   return data
 }

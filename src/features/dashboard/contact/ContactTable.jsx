@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { ConfigProvider, Empty, Table, Input, Space } from 'antd'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { selectAllContacts } from '../../contact/contactsSlice'
+import { selectAllContacts } from '../../../slice/contactsSlice'
 
 const { Search } = Input
 
@@ -13,52 +13,18 @@ const columns = [
   { title: 'Message', dataIndex: 'message' },
 ]
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    email: 'huyltqse135@gmail.com',
-    subject: 'subject',
-    message: 'good',
-  },
-  {
-    key: '2',
-    name: 'Jane Doe',
-    email: 'janedoe@gmail.com',
-    subject: 'question',
-    message: 'hello',
-  },
-  {
-    key: '3',
-    name: 'Tom Smith',
-    email: 'tomsmith@gmail.com',
-    subject: 'feedback',
-    message: 'nice',
-  },
-  {
-    key: '4',
-    name: 'Alice',
-    email: 'alice@gmail.com',
-    subject: 'report',
-    message: 'bug',
-  },
-]
-
 const StyledContactTable = styled.div`
   width: 100%;
 `
-
 const StyledSearch = styled(Search)`
   max-width: 300;
 `
-
 const StyledSpace = styled(Space)`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 16px;
   width: 100%;
 `
-
 const ContactTable = () => {
   const contacts = useSelector(selectAllContacts)
   const data = contacts.map((contact, index) => {
@@ -70,6 +36,7 @@ const ContactTable = () => {
       message: contact.message,
     }
   })
+  console.log('data', data)
 
   const [searchText, setSearchText] = useState('')
   const [filteredData, setFilteredData] = useState(data)

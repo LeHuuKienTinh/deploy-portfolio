@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import projectsReducer from '../features/projects/ProjectsSlice'
-import skillsReducer from '../features/Skills/skillSlice'
-import factsReducer from '../features/Facts/factSlice'
-import contactsReducer from '../features/contact/contactsSlice'
+import projectsReducer from '../slice/ProjectsSlice'
+import skillsReducer from '../slice/skillSlice'
+import factsReducer from '../slice/factSlice'
+import contactsReducer from '../slice/contactsSlice'
+import userReducer from '../slice/userInfoSlice'
 
-import userReducer from '../features/userInfoSlice'
 export const store = configureStore({
   reducer: {
     projectsSlice: projectsReducer,

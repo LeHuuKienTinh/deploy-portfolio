@@ -2,7 +2,7 @@ import { Button, Card, Col, ConfigProvider, Popconfirm, Row } from 'antd'
 import styled from 'styled-components'
 
 import ProjectItem from './ProjectItem'
-import useProjects from './useProjects'
+import useProjects from '../../hooks/useProjects'
 
 const StyleCardProjectItem = styled(Card)`
   position: relative;

@@ -12,25 +12,22 @@ import { CgWebsite } from 'react-icons/cg'
 import Button from '../../../components/Button'
 import Heading from '../../../components/Heading'
 
-import useEditProject, { ProjectSchema } from './useEditProject'
+import useEditProject, { ProjectSchema } from '../../../hooks/useEditProject'
 
 const StyledRangePicker = styled(DatePicker.RangePicker)`
   width: 100%;
 `
-
 const StyledButtonWrap = styled.div`
   display: flex;
   gap: 20px;
   justify-content: flex-end;
 `
-
 const StyledButtonCancel = styled(Button)`
   background-color: var(--color-grey-500);
   &:hover {
     background-color: var(--color-grey-400);
   }
 `
-
 export default function ProjectItemEdit({ project = {}, onCancel }) {
   const { initialValues, handleSubmit } = useEditProject(project, onCancel)
 

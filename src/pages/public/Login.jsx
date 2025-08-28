@@ -1,11 +1,11 @@
 import { Col, Row } from 'antd'
 import styled from 'styled-components'
 
-import HeroImgLight from '../assets/hero-bg-light.jpg'
-import HeroImgDark from '../assets/hero-bg-dark.png'
-import LoginForm from '../features/authentication/LoginForm'
-import { useUser } from '../features/authentication/useUser'
-import LoadingFullPage from '../components/LoadingFullPage'
+import HeroImgLight from '../../assets/hero-bg-light.jpg'
+import HeroImgDark from '../../assets/hero-bg-dark.png'
+import LoginForm from '../../features/authentication/LoginForm'
+import { useUser } from '../../hooks/useUser'
+import LoadingFullPage from '../../components/LoadingFullPage'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
@@ -34,7 +34,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate('/dashboard', { replace: true })
+      navigate('/dashboard/about', { replace: true })
     }
   }, [user])
 

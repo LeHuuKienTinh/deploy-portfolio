@@ -1,11 +1,12 @@
-import { useUser } from '../authentication/useUser'
+import { format } from 'date-fns'
 import styled from 'styled-components'
 import { IoIosArrowForward } from 'react-icons/io'
 import { Col, Row } from 'antd'
+import { useSelector } from 'react-redux'
+
+import { selectAllDataUser } from '../../slice/userInfoSlice'
+
 import Heading from '../../components/Heading'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectAllDataUser, selectStatusDataUser } from '../userInfoSlice'
-import { format } from 'date-fns'
 
 const StyleInfoContent = styled.div`
   display: flex;
@@ -30,14 +31,8 @@ const StyleList = styled.li`
 `
 export default function InfoContent() {
   const data = useSelector(selectAllDataUser)
-  const status = useSelector(selectStatusDataUser)
 
-  if (status === 'pending') {
-    return <div>Loading...</div>
-  }
-
-  const { fullName, email, birthdate, phone, degree, address } = data[0]
-
+  const { fullName, email, birthdate, phone, degree, address } = data
   return (
     <StyleInfoContent>
       <Heading as='h3'> UI/UX Designer & Web Developer.</Heading>

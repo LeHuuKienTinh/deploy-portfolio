@@ -1,21 +1,17 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
-
-import Footer from '../components/Footer'
-
-import {
-  fetchProjects,
-  selectStatusProjects,
-} from '../features/projects/ProjectsSlice'
-
-import Sidebar from '../components/Sidebar'
-import SocialGroup from '../components/SocialGroup'
+import useStatus from '../../hooks/useStatus'
 import styled from 'styled-components'
-import LoadingFullPage from '../components/LoadingFullPage'
-import { fetchFacts } from '../features/Facts/factSlice'
-import { fetchDataUser } from '../features/userInfoSlice'
-import { fetchSkills } from '../features/Skills/skillSlice'
+
+import LoadingFullPage from '../../components/LoadingFullPage'
+import { fetchDataUser } from '../../slice/userInfoSlice'
+import { fetchSkills } from '../../slice/skillSlice'
+import { fetchFacts } from '../../slice/factSlice'
+
+import SocialGroup from '../../components/SocialGroup'
+import Sidebar from '../../components/Sidebar'
+import Footer from '../../components/Footer'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -55,17 +51,19 @@ const SocialWrapper = styled.div`
 `
 export default function DashboardLayout() {
   const dispatch = useDispatch()
-  const status = useSelector(selectStatusProjects)
+
+  const { isLoadingUser, isLoadingFacts, isLoadingSkills } = useStatus()
 
   useEffect(() => {
+    dispatch(fetchDataUser())
     dispatch(fetchSkills())
     dispatch(fetchFacts())
-    dispatch(fetchDataUser())
-    dispatch(fetchProjects())
   }, [dispatch])
 
   return (
-    <>
+    <LoadingFullPage
+      isLoading={isLoadingUser || isLoadingFacts || isLoadingSkills}
+    >
       <StyledAppLayout>
         <Sidebar />
         <Main>
@@ -78,6 +76,6 @@ export default function DashboardLayout() {
         </Main>
       </StyledAppLayout>
       <Footer />
-    </>
+    </LoadingFullPage>
   )
 }

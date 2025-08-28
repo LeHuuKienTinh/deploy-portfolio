@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import HeadingPageComponent from '../components/HeadingPageComponent'
-import Container from '../components/Container'
-import ContactInfo from '../features/contact/ContactInfo'
-import ContactForm from '../features/contact/ContactForm'
+import HeadingPageComponent from '../../components/HeadingPageComponent'
+import Container from '../../components/Container'
+import ContactInfo from '../../features/contact/ContactInfo'
+import ContactForm from '../../features/contact/ContactForm'
 import { Col, Row } from 'antd'
 
 export default function Contact() {

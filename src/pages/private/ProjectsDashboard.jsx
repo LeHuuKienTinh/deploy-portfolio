@@ -2,16 +2,14 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import {
-  fetchProjects,
-  selectStatusProjects,
-} from '../features/projects/ProjectsSlice'
+import { fetchProjects } from '../../slice/ProjectsSlice'
 
-import Heading from '../components/Heading'
-import ListProjects from '../features/projects/ListProjects'
-import ModalProjectEdit from '../features/dashboard/projects/ModalProjectEdit'
-import useProjects from '../features/projects/useProjects'
-import LoadingComponent from '../components/LoadingComponent'
+import Heading from '../../components/Heading'
+import ListProjects from '../../features/projects/ListProjects'
+import ModalProjectEdit from '../../features/dashboard/projects/ModalProjectEdit'
+import useProjects from '../../hooks/useProjects'
+import LoadingComponent from '../../components/LoadingComponent'
+import useStatus from '../../hooks/useStatus'
 
 const StyledButton = styled.button`
   position: fixed;
@@ -47,7 +45,6 @@ const StyledButton = styled.button`
     }
   }
 `
-
 const StyedProjectsDashboard = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,14 +63,14 @@ export default function ProjectsDashboard() {
 
   const dispatch = useDispatch()
 
-  const statusProjects = useSelector(selectStatusProjects)
+  const { isLoadingProjects } = useStatus()
 
   useEffect(() => {
     dispatch(fetchProjects())
   }, [dispatch])
 
   return (
-    <LoadingComponent isLoading={statusProjects === 'idle'}>
+    <LoadingComponent isLoading={isLoadingProjects}>
       <StyedProjectsDashboard>
         <Heading as='h2'>
           Projects {!activeEdit ? 'Preview' : 'Editting'}

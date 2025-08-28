@@ -9,7 +9,6 @@ const StyledModal = styled(Modal)`
     left: 0;
   }
 `
-
 export default function ModalProjectEdit({ project, isOpenModal, onCancel }) {
   return (
     <StyledModal onCancel={onCancel} open={isOpenModal} footer={null}>

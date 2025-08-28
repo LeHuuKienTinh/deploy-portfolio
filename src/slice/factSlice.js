@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getFactsApi, updateFactsApi } from '../../services/apiFacts'
+import { getFactsApi, updateFactsApi } from '../services/apiFacts'
 
 const initialState = {
   factsData: {
