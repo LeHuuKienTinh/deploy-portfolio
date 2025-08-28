@@ -34,6 +34,11 @@ const StyledButtonCancel = styled(Button)`
 export default function ProjectItemEdit({ project = {}, onCancel }) {
   const { initialValues, handleSubmit } = useEditProject(project, onCancel)
 
+  function handleButtonCancel({ resetForm }) {
+    resetForm({ values: initialValues })
+    onCancel()
+  }
+
   return (
     <Flex vertical>
       <Heading as='h2'>Edit Project</Heading>
@@ -45,6 +50,7 @@ export default function ProjectItemEdit({ project = {}, onCancel }) {
           token: {
             colorBgContainer: 'var(--color-grey-50)',
             colorTextPlaceholder: 'var(--color-grey-700)',
+            colorBgElevated: 'var(--color-grey-50)',
             colorText: 'var(--color-grey-900)',
           },
         }}
@@ -91,7 +97,7 @@ export default function ProjectItemEdit({ project = {}, onCancel }) {
               <StyledButtonWrap>
                 <Button type='submit'>Submit</Button>
                 <StyledButtonCancel
-                  onClick={() => resetForm({ values: initialValues })}
+                  onClick={() => handleButtonCancel({ resetForm })}
                   type='button'
                 >
                   Cancel
