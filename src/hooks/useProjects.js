@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProject, selectAllProjects } from '../slice/projectsSlice'
+import { deleteProject, selectAllProjects } from '../slice/ProjectsSlice'
 import { parse } from 'date-fns'
 import { useState } from 'react'
 

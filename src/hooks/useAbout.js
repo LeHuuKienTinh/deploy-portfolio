@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { selectAllFacts } from '../slice/factSlice'
 import { selectAllSkills } from '../slice/skillSlice'
 import { selectAllDataUser } from '../slice/userInfoSlice'
-import { selectAllProjects } from '../slice/projectsSlice'
+import { selectAllProjects } from '../slice/ProjectsSlice'
 
 export default function useAbout() {
   const skills = useSelector(selectAllSkills)
