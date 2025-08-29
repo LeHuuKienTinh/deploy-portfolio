@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import projectsReducer from '../slice/projectsSlice'
+import projectsReducer from '../slice/ProjectsSlice'
 import skillsReducer from '../slice/skillSlice'
 import factsReducer from '../slice/factSlice'
 import contactsReducer from '../slice/contactsSlice'
