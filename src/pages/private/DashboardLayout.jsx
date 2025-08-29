@@ -12,7 +12,7 @@ import { fetchFacts } from '../../slice/factSlice'
 import SocialGroup from '../../components/SocialGroup'
 import Sidebar from '../../components/Sidebar'
 import Footer from '../../components/Footer'
-import { fetchProjects } from '../../slice/projectsSlice'
+import { fetchProjects } from '../../slice/ProjectsSlice'
 
 const StyledAppLayout = styled.div`
   display: grid;

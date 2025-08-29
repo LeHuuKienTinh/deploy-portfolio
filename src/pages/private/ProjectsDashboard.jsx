@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { fetchProjects } from '../../slice/projectsSlice'
+import { fetchProjects } from '../../slice/ProjectsSlice'
 
 import Heading from '../../components/Heading'
 import ListProjects from '../../features/projects/ListProjects'
