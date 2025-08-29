@@ -1,4 +1,4 @@
-import { Modal, Button } from 'antd'
+import { Modal } from 'antd'
 import { Form, Input } from 'formik-antd'
 import { Formik } from 'formik'
 import * as Yup from 'yup'

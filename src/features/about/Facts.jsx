@@ -6,6 +6,7 @@ import useAbout from '../../hooks/useAbout'
 export default function Facts() {
   const { skills, facts } = useAbout()
   const { projects } = useProjects()
+  console.log('projects', projects)
 
   return (
     <Row justify='center' align='middle' gutter={[12, 42]}>

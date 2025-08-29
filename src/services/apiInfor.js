@@ -22,3 +22,28 @@ export const updateInfoApi = async (userID, dataUpdate) => {
     throw error
   }
 }
+
+export const updateAvatar = async (fileList) => {
+  let avatarUrl = null
+  try {
+    if (fileList.length > 0 && fileList[0].originFileObj) {
+      const file = fileList[0].originFileObj
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${Date.now()}.${fileExt}`
+      const filePath = `avatars/${fileName}`
+
+      const { error } = await supabase.storage
+        .from('Image')
+        .upload(filePath, file)
+
+      if (error) {
+        return
+      }
+      const { data } = supabase.storage.from('Image').getPublicUrl(filePath)
+      avatarUrl = data.publicUrl
+    }
+    return avatarUrl
+  } catch (error) {
+    throw error
+  }
+}

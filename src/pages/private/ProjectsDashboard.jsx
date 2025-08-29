@@ -65,10 +65,6 @@ export default function ProjectsDashboard() {
 
   const { isLoadingProjects } = useStatus()
 
-  useEffect(() => {
-    dispatch(fetchProjects())
-  }, [dispatch])
-
   return (
     <LoadingComponent isLoading={isLoadingProjects}>
       <StyedProjectsDashboard>

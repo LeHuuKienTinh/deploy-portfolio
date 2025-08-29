@@ -12,6 +12,7 @@ import { fetchFacts } from '../../slice/factSlice'
 import SocialGroup from '../../components/SocialGroup'
 import Sidebar from '../../components/Sidebar'
 import Footer from '../../components/Footer'
+import { fetchProjects } from '../../slice/projectsSlice'
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -56,6 +57,7 @@ export default function DashboardLayout() {
     dispatch(fetchDataUser())
     dispatch(fetchSkills())
     dispatch(fetchFacts())
+    dispatch(fetchProjects())
   }, [dispatch])
 
   return (
