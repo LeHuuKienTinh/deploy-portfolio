@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux'
 import { selectStatusDataUser } from '../slice/userInfoSlice'
 import { selectSkillsStatus } from '../slice/skillSlice'
 import { selectFactsStatus } from '../slice/factSlice'
-import { selectStatusProjects } from '../slice/projectsSlice'
+import { selectStatusProjects } from '../slice/ProjectsSlice'
 import { selectStatusContacts } from '../slice/contactsSlice'
 
 function useStatus() {
