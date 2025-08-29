@@ -12,16 +12,16 @@ import { fetchDataUser } from '../../slice/userInfoSlice'
 
 const StyleMainWrapper = styled.main`
   background-color: var(--color-grey-0);
+  min-height: 100vh;
 `
 export default function AppLayout() {
   const dispatch = useDispatch()
-  const location = useLocation()
 
   const { isLoadingUser } = useStatus()
 
   useEffect(() => {
     dispatch(fetchDataUser())
-  }, [dispatch, location.pathname])
+  }, [dispatch])
 
   return (
     <LoadingFullPage isLoading={isLoadingUser}>

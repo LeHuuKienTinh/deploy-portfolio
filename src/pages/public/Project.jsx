@@ -7,7 +7,7 @@ import { fetchProjects } from '../../slice/projectsSlice'
 import ListProjects from '../../features/projects/ListProjects'
 import HeadingPageComponent from '../../components/HeadingPageComponent'
 import Container from '../../components/Container'
-import LoadingFullPage from '../../components/LoadingFullPage'
+import LoadingComponent from '../../components/LoadingComponent'
 
 export default function Project() {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ export default function Project() {
     dispatch(fetchProjects())
   }, [dispatch])
   return (
-    <LoadingFullPage isLoading={isLoadingProjects}>
+    <LoadingComponent isLoading={isLoadingProjects}>
       <Container>
         <HeadingPageComponent
           title='Projects'
@@ -26,6 +26,6 @@ export default function Project() {
         />
         <ListProjects />
       </Container>
-    </LoadingFullPage>
+    </LoadingComponent>
   )
 }

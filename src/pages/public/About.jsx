@@ -12,6 +12,7 @@ import Container from '../../components/Container'
 import CardInfo from '../../features/about/CardInfo'
 import Facts from '../../features/about/Facts'
 import ProgessSkills from '../../features/about/ProgessSkills'
+import LoadingComponent from '../../components/LoadingComponent'
 
 const StyleAbout = styled.section`
   display: flex;
@@ -34,7 +35,7 @@ export default function About() {
   }, [dispatch])
 
   return (
-    <LoadingFullPage isLoading={isLoadingSkills || isLoadingFacts}>
+    <LoadingComponent isLoading={isLoadingSkills || isLoadingFacts}>
       <Container>
         <StyleAbout>
           <HeadingPageComponent
@@ -58,6 +59,6 @@ export default function About() {
           </StyleSection>
         </StyleAbout>
       </Container>
-    </LoadingFullPage>
+    </LoadingComponent>
   )
 }
