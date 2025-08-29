@@ -10,6 +10,8 @@ import UpdateSkills from '../../features/dashboard/about/UpdateSkills'
 import UpdateFacts from '../../features/dashboard/about/UpdateFacts'
 import Heading from '../../components/Heading'
 import InfoContent from '../../features/about/InfoContent'
+import LoadingComponent from '../../components/LoadingComponent'
+import useStatus from '../../hooks/useStatus'
 
 const StyleAboutDashboard = styled.div`
   & h2 {
@@ -26,6 +28,8 @@ const StyleButton = styled.div`
 `
 export default function AboutDashboard() {
   const data = useSelector(selectAllDataUser)
+
+  const { isLoadingUser, isLoadingSkills, isLoadingFacts } = useStatus()
 
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -44,61 +48,65 @@ export default function AboutDashboard() {
   }
 
   return (
-    <StyleAboutDashboard>
-      <Heading as='h2'>About Dashboard</Heading>
-      <ConfigProvider
-        theme={{
-          components: {
-            Card: {
-              bodyPadding: 12,
+    <LoadingComponent
+      isLoading={isLoadingUser || isLoadingSkills || isLoadingFacts}
+    >
+      <StyleAboutDashboard>
+        <Heading as='h2'>About Dashboard</Heading>
+        <ConfigProvider
+          theme={{
+            components: {
+              Card: {
+                bodyPadding: 12,
+              },
+              Button: {
+                defaultBg: 'var(--color-cyan-4)',
+                fontWeight: 500,
+              },
+              Modal: {
+                contentBg: 'var(--color-grey-0)',
+                headerBg: 'var(--color-grey-0)',
+              },
             },
-            Button: {
-              defaultBg: 'var(--color-cyan-4)',
-              fontWeight: 500,
+            token: {
+              colorBgContainer: 'var(--color-grey-0)',
+              colorText: 'var(--color-grey-800)',
             },
-            Modal: {
-              contentBg: 'var(--color-grey-0)',
-              headerBg: 'var(--color-grey-0)',
-            },
-          },
-          token: {
-            colorBgContainer: 'var(--color-grey-0)',
-            colorText: 'var(--color-grey-800)',
-          },
-        }}
-      >
-        <Card>
-          <Row>
-            <Col xs={24} sm={24} lg={8} span={2}>
-              <Row justify='center'>
-                <StyleAvata src={`${avatar}`} alt='avata' />
-              </Row>
-            </Col>
-            <Col xs={24} sm={24} lg={16} span={16}>
-              <InfoContent />
-            </Col>
-          </Row>
-        </Card>
-        <StyleButton>
-          <Button size='large' onClick={showModal}>
-            Update
-          </Button>
-        </StyleButton>
-        <Modal
-          title={<Heading as='h3'>Update Information </Heading>}
-          closable={{ 'aria-label': 'Custom Close Button' }}
-          open={isModalOpen}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          zIndex={30000}
-          width={900}
-          footer={null}
+          }}
         >
-          <UpdateInfoModal handleCancel={handleCancel} data={data} />
-        </Modal>
-        <UpdateSkills />
-        <UpdateFacts />
-      </ConfigProvider>
-    </StyleAboutDashboard>
+          <Card>
+            <Row>
+              <Col xs={24} sm={24} lg={8} span={2}>
+                <Row justify='center'>
+                  <StyleAvata src={`${avatar}`} alt='avata' />
+                </Row>
+              </Col>
+              <Col xs={24} sm={24} lg={16} span={16}>
+                <InfoContent />
+              </Col>
+            </Row>
+          </Card>
+          <StyleButton>
+            <Button size='large' onClick={showModal}>
+              Update
+            </Button>
+          </StyleButton>
+          <Modal
+            title={<Heading as='h3'>Update Information </Heading>}
+            closable={{ 'aria-label': 'Custom Close Button' }}
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            zIndex={30000}
+            width={900}
+            footer={null}
+          >
+            <UpdateInfoModal handleCancel={handleCancel} data={data} />
+          </Modal>
+          <UpdateSkills />
+          <UpdateFacts />
+        </ConfigProvider>
+      </StyleAboutDashboard>
+    </LoadingComponent>
   )
 }

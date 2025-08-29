@@ -52,8 +52,6 @@ const SocialWrapper = styled.div`
 export default function DashboardLayout() {
   const dispatch = useDispatch()
 
-  const { isLoadingUser, isLoadingFacts, isLoadingSkills } = useStatus()
-
   useEffect(() => {
     dispatch(fetchDataUser())
     dispatch(fetchSkills())
@@ -61,9 +59,7 @@ export default function DashboardLayout() {
   }, [dispatch])
 
   return (
-    <LoadingFullPage
-      isLoading={isLoadingUser || isLoadingFacts || isLoadingSkills}
-    >
+    <>
       <StyledAppLayout>
         <Sidebar />
         <Main>
@@ -76,6 +72,6 @@ export default function DashboardLayout() {
         </Main>
       </StyledAppLayout>
       <Footer />
-    </LoadingFullPage>
+    </>
   )
 }
